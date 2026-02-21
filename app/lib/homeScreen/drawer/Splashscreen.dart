@@ -33,16 +33,16 @@ class _SplashscreenState extends State<Splashscreen> {
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
-      backgroundColor: Colors.white,
+      backgroundColor: Colors.amber.shade200,
       body: Center(
-        child: 
-        Text(
-          "My App",
-          style: TextStyle(
-            fontSize: 30,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
+        child: Image.asset('assets/images/logo.png')
+        // Text(
+        //   "My App",
+        //   style: TextStyle(
+        //     fontSize: 30,
+        //     fontWeight: FontWeight.bold,
+        //   ),
+        // ),
       ),
     );
   }

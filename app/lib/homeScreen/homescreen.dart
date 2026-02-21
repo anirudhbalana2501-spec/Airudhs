@@ -40,7 +40,7 @@ class _HomescreenState extends State<Homescreen> {
       padding:  EdgeInsets.only(top: 20),
       child: Material(
         borderRadius: BorderRadius.circular(20),
-        color: selected ? Colors.amber : Colors.transparent,
+      //  color: selected ? Colors.amber : Colors.transparent,
         child: InkWell(
           onTap: () {
             Navigator.pop(context);
@@ -85,10 +85,8 @@ class _HomescreenState extends State<Homescreen> {
     } else if (
       currentpage == DrawerSection.Setting
     ){
-      container = Container(
-      color: Colors.amber,
-      child: Setting(),
-    );
+      container =  Setting();
+    
     }
 
     return SafeArea(
