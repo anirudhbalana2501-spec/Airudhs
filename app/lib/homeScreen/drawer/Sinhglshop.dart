@@ -96,7 +96,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
     setState(() {
       ismanu = false;
     });
-   // (() {});
+    // (() {});
   }
 
   void review() {
@@ -234,6 +234,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                 ),
                               ),
                             ),
+
                             Container(
                               padding: EdgeInsets.symmetric(
                                 horizontal: 6,
@@ -264,6 +265,16 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                           ],
                         ),
                         SizedBox(height: 6),
+
+                        GestureDetector(
+                          onTap: inf,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.black12,
+                            radius: 15,
+                            child: Text("i"),
+                          ),
+                        ),
+                        SizedBox(height: 5),
 
                         Text(
                           "${widget.location}",
@@ -392,11 +403,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
             SizedBox(height: 20),
             Column(
               children: [
-                GestureDetector(
-
-                 
-                 
-
+                GestureDetector( 
                   onTap: menu,
                   // ismanu: true,
                   child: Container(

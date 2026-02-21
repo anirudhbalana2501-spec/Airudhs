@@ -3,6 +3,7 @@ import 'package:app/homeScreen/drawer/Hader.dart';
 import 'package:app/homeScreen/drawer/Newres.dart';
 import 'package:app/homeScreen/drawer/Save.dart';
 import 'package:app/homeScreen/drawer/Dashboard.dart';
+import 'package:app/homeScreen/drawer/setitng.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
@@ -12,7 +13,7 @@ class Homescreen extends StatefulWidget {
   State<Homescreen> createState() => _HomescreenState();
 }
 
-enum DrawerSection { Dashboard }
+enum DrawerSection { Dashboard, Setting }
 
 class _HomescreenState extends State<Homescreen> {
   var currentpage = DrawerSection.Dashboard;
@@ -26,8 +27,9 @@ class _HomescreenState extends State<Homescreen> {
             1,
             "Dashbord",
             Icons.people_alt_outlined,
-            currentpage == DrawerSection.Dashboard ? true : false,
-          ),
+            currentpage == DrawerSection.Dashboard ? true : false),
+          menuItem(2, "Setting", Icons.logout_outlined, currentpage == DrawerSection.Setting? true : false)
+          
         ],
       ),
     );
@@ -35,16 +37,18 @@ class _HomescreenState extends State<Homescreen> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Padding(
-      padding:  EdgeInsets.only(top: 270),
+      padding:  EdgeInsets.only(top: 20),
       child: Material(
         borderRadius: BorderRadius.circular(20),
-        color: selected ? Colors.green : Colors.transparent,
+        color: selected ? Colors.amber : Colors.transparent,
         child: InkWell(
           onTap: () {
             Navigator.pop(context);
             setState(() {
               if (id == 1) {
                 currentpage = DrawerSection.Dashboard;
+              } else if ( id == 2){
+                currentpage = DrawerSection.Setting;
               }
             });
           },
@@ -78,6 +82,13 @@ class _HomescreenState extends State<Homescreen> {
     var container;
     if (currentpage == DrawerSection.Dashboard) {
       container = Dashboard();
+    } else if (
+      currentpage == DrawerSection.Setting
+    ){
+      container = Container(
+      color: Colors.amber,
+      child: Setting(),
+    );
     }
 
     return SafeArea(
@@ -89,7 +100,7 @@ class _HomescreenState extends State<Homescreen> {
               children: [
                 Container(
                   height: 200,
-                  color: Colors.amber,
+                  color: Colors.white,
                   width: MediaQuery.of(context).size.width,
                   child: HeaderComponent(),
                 ),
@@ -100,7 +111,7 @@ class _HomescreenState extends State<Homescreen> {
         ),
         body: container,
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed, // 👈 4–5 items ke liye zaroori
+          type: BottomNavigationBarType.fixed, 
           iconSize: 30,
           selectedFontSize: 10,
           unselectedFontSize: 12,

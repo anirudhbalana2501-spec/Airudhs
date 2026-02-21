@@ -3,9 +3,12 @@
 // import 'package:app/homeScreen/drawer/Newres.dart';
 // import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/Sinhglshop.dart';
+import 'package:app/homeScreen/drawer/Splashscreen.dart';
 import 'package:app/homeScreen/drawer/aaaa.dart';
 import 'package:app/homeScreen/drawer/profilepage.dart';
 import 'package:app/homeScreen/drawer/payment.dart';
+import 'package:app/homeScreen/drawer/setitng.dart';
+import 'package:app/homeScreen/drawer/sinhg.dart';
 import 'package:app/homeScreen/homescreen.dart';
 // import 'package:app/homeScreen/drawer/id2.dart';
 // import 'package:app/homeScreen/drawer/idveg.dart';
@@ -47,7 +50,7 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Homescreen(),
+      home: Sinhg(),
     );
   }
 }
