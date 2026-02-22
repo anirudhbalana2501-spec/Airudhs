@@ -12,6 +12,9 @@ class _SinhgState extends State<Sinhg> {
     print("object hanu hello");
   }
 
+  bool isMenuOpen = false;
+  bool isThaliOpen = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,197 +49,209 @@ class _SinhgState extends State<Sinhg> {
                                 ),
                               ),
                               SizedBox(width: 250),
-                              CircleAvatar(
-                                radius: 15,
-          
-                                backgroundColor: Colors.black12,
-          
-                                child: Icon(Icons.arrow_drop_down, size: 25),
+                              GestureDetector(
+                                onTap: () {
+                                  setState(() {
+                                    isMenuOpen = !isMenuOpen;
+                                  });
+                                },
+                                child: CircleAvatar(
+                                  radius: 15,
+                                  backgroundColor: Colors.black12,
+                                  child: Icon(Icons.arrow_drop_down, size: 25),
+                                ),
+
+                                //Icon(Icons.arrow_drop_down, size: 30),
+                                //Icon(Icons.abc)
                               ),
-          
-                              //Icon(Icons.arrow_drop_down, size: 30),
-                              //Icon(Icons.abc)
                             ],
                           ),
                         ),
                         SizedBox(height: 10),
-          
-                        Column(
-                          children: [
-                            Container(
-                              padding: EdgeInsets.all(10),
-                              width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                //   borderRadius: BorderRadius.circular(20),
-                                //   boxShadow: [
-                                //     BoxShadow(
-                                //       color: Colors.black12,
-                                //       blurRadius: 10,
-                                //       spreadRadius: 2,
-                                //     ),
-                                //   ],
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    "Recommended for you",
-                                    style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold,
+                        if (isMenuOpen)
+                          Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(10),
+                                width: double.infinity,
+                                decoration: BoxDecoration(
+                                  color: Colors.white,
+                                  //   borderRadius: BorderRadius.circular(20),
+                                  //   boxShadow: [
+                                  //     BoxShadow(
+                                  //       color: Colors.black12,
+                                  //       blurRadius: 10,
+                                  //       spreadRadius: 2,
+                                  //     ),
+                                  //   ],
+                                ),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    Text(
+                                      "Recommended for you",
+                                      style: TextStyle(
+                                        fontSize: 22,
+                                        fontWeight: FontWeight.bold,
+                                      ),
                                     ),
-                                  ),
-          
-                                  SizedBox(height: 20),
-                                  Row(
-                                    children: [
-                                      Text(
-                                        "THALI",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.w400,
-                                          color: Colors.grey,
-                                          fontSize: 20,
+
+                                    SizedBox(height: 20),
+                                    Row(
+                                      children: [
+                                        Text(
+                                          "THALI",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.w400,
+                                            color: Colors.grey,
+                                            fontSize: 20,
+                                          ),
                                         ),
-                                      ),
-                                      SizedBox(width: 230),
-                                      CircleAvatar(
-                                        radius: 15,
-                                        backgroundColor: Colors.amberAccent,
-          
-                                        child: Icon(
-                                          Icons.arrow_drop_down,
-                                          size: 25,
-                                        ),
-                                      ),
-                                      // Icon(Icons.arrow_drop_down, size: 30),
-                                    ],
-                                  ),
-          
-                                  SizedBox(height: 15),
-          
-                                  Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    children: [
-                                      Expanded(
-                                        child: Column(
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Icon(
-                                              Icons.circle,
-                                              color: Colors.green,
-                                              size: 18,
-                                            ),
-          
-                                            SizedBox(height: 10),
-          
-                                            Text(
-                                              "Paneer Butter Masala\n[300 ml] with 3 Tandoori Roti",
-                                              style: TextStyle(
-                                                fontWeight: FontWeight.w600,
-                                              ),
-                                              textAlign: TextAlign.justify,
-                                            ),
-          
-                                            SizedBox(height: 10),
-          
-                                            Text(
-                                              "₹180",
-                                              style: TextStyle(
-                                                decoration:
-                                                    TextDecoration.lineThrough,
-                                                color: Colors.grey,
-                                                fontSize: 16,
-                                              ),
-                                            ),
-          
-                                            Text(
-                                              "Get for ₹169",
-                                              style: TextStyle(
-                                                color: Colors.blue,
-                                                fontSize: 18,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                            ),
-          
-                                            SizedBox(height: 10),
-          
-                                            Text(
-                                              "NOT ELIGIBLE FOR COUPONS",
-                                              style: TextStyle(
-                                                color: Colors.grey,
-                                                fontSize: 14,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-          
-                                      SizedBox(width: 10),
-          
-                                      /// RIGHT SIDE IMAGE + BUTTON
-                                      Column(
-                                        children: [
-                                          ClipRRect(
-                                            borderRadius: BorderRadius.circular(
-                                              15,
-                                            ),
-                                            child: Image.asset(
-                                              "assets/images/manu/thali/istockphoto-1458973879-2048x2048.jpg", // apni image lagao
-                                              height: 120,
-                                              width: 120,
-                                              fit: BoxFit.cover,
+                                        SizedBox(width: 230),
+                                        GestureDetector(
+                                          onTap: () {
+                                            setState(() {
+                                              isThaliOpen = !isThaliOpen;
+                                            });
+                                          },
+                                          child: CircleAvatar(
+                                            radius: 15,
+                                            backgroundColor: Colors.amberAccent,
+
+                                            child: Icon(
+                                              Icons.arrow_drop_down,
+                                              size: 25,
                                             ),
                                           ),
-          
-                                          SizedBox(height: 10),
-          
-                                          /// ADD BUTTON (2 COLOR)
-                                          Container(
-                                            padding: EdgeInsets.symmetric(
-                                              horizontal: 30,
-                                              vertical: 10,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(
-                                                12,
-                                              ),
-          
-                                              gradient: LinearGradient(
-                                                colors: [
-                                                  Colors.green,
-                                                  Colors.lightGreen,
-                                                ],
-                                              ),
-                                            ),
-                                            child: Row(
+                                          // Icon(Icons.arrow_drop_down, size: 30),
+                                        ),
+                                      ],
+                                    ),
+
+                                    SizedBox(height: 15),
+                                    if (isThaliOpen)
+                                      Row(
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
                                               children: [
+                                                Icon(
+                                                  Icons.circle,
+                                                  color: Colors.green,
+                                                  size: 18,
+                                                ),
+
+                                                SizedBox(height: 10),
+
                                                 Text(
-                                                  "ADD",
+                                                  "Paneer Butter Masala\n[300 ml] with 3 Tandoori Roti",
                                                   style: TextStyle(
-                                                    color: Colors.white,
+                                                    fontWeight: FontWeight.w600,
+                                                  ),
+                                                  textAlign: TextAlign.justify,
+                                                ),
+
+                                                SizedBox(height: 10),
+
+                                                Text(
+                                                  "₹180",
+                                                  style: TextStyle(
+                                                    decoration: TextDecoration
+                                                        .lineThrough,
+                                                    color: Colors.grey,
+                                                    fontSize: 16,
+                                                  ),
+                                                ),
+
+                                                Text(
+                                                  "Get for ₹169",
+                                                  style: TextStyle(
+                                                    color: Colors.blue,
+                                                    fontSize: 18,
                                                     fontWeight: FontWeight.bold,
                                                   ),
                                                 ),
-                                                SizedBox(width: 5),
-                                                Icon(
-                                                  Icons.add,
-                                                  color: Colors.white,
-                                                  size: 18,
+
+                                                SizedBox(height: 10),
+
+                                                Text(
+                                                  "NOT ELIGIBLE FOR COUPONS",
+                                                  style: TextStyle(
+                                                    color: Colors.grey,
+                                                    fontSize: 14,
+                                                  ),
                                                 ),
                                               ],
                                             ),
                                           ),
+
+                                          SizedBox(width: 10),
+
+                                          /// RIGHT SIDE IMAGE + BUTTON
+                                          Column(
+                                            children: [
+                                              ClipRRect(
+                                                borderRadius:
+                                                    BorderRadius.circular(15),
+                                                child: Image.asset(
+                                                  "assets/images/manu/thali/istockphoto-1458973879-2048x2048.jpg", // apni image lagao
+                                                  height: 120,
+                                                  width: 120,
+                                                  fit: BoxFit.cover,
+                                                ),
+                                              ),
+
+                                              SizedBox(height: 10),
+
+                                              /// ADD BUTTON (2 COLOR)
+                                              Container(
+                                                padding: EdgeInsets.symmetric(
+                                                  horizontal: 30,
+                                                  vertical: 10,
+                                                ),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(12),
+
+                                                  gradient: LinearGradient(
+                                                    colors: [
+                                                      Colors.green,
+                                                      Colors.lightGreen,
+                                                    ],
+                                                  ),
+                                                ),
+                                                child: Row(
+                                                  children: [
+                                                    Text(
+                                                      "ADD",
+                                                      style: TextStyle(
+                                                        color: Colors.white,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                    SizedBox(width: 5),
+                                                    Icon(
+                                                      Icons.add,
+                                                      color: Colors.white,
+                                                      size: 18,
+                                                    ),
+                                                  ],
+                                                ),
+                                              ),
+                                            ],
+                                          ),
                                         ],
                                       ),
-                                    ],
-                                  ),
-                                ],
+                                  ],
+                                ),
                               ),
-                            ),
-                          ],
-                        ),
+                            ],
+                          ),
                       ],
                     ),
                   ),
