@@ -411,7 +411,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                   child: Container(
                     padding: EdgeInsets.all(0),
                     margin: EdgeInsets.symmetric(horizontal: 10),
-                    height: 480,
+                   // height: 480,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(10),
