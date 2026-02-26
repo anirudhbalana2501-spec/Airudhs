@@ -17,7 +17,6 @@ enum DrawerSection { Dashboard, Setting }
 
 class _HomescreenState extends State<Homescreen> {
   var currentpage = DrawerSection.Dashboard;
-  
 
   Widget ListData() {
     return Container(
@@ -28,9 +27,14 @@ class _HomescreenState extends State<Homescreen> {
             1,
             "Dashbord",
             Icons.people_alt_outlined,
-            currentpage == DrawerSection.Dashboard ? true : false),
-          menuItem(2, "Setting", Icons.logout_outlined, currentpage == DrawerSection.Setting? true : false)
-          
+            currentpage == DrawerSection.Dashboard ? true : false,
+          ),
+          menuItem(
+            2,
+            "Setting",
+            Icons.logout_outlined,
+            currentpage == DrawerSection.Setting ? true : false,
+          ),
         ],
       ),
     );
@@ -38,17 +42,17 @@ class _HomescreenState extends State<Homescreen> {
 
   Widget menuItem(int id, String title, IconData icon, bool selected) {
     return Padding(
-      padding:  EdgeInsets.only(top: 20),
+      padding: EdgeInsets.only(top: 20),
       child: Material(
         borderRadius: BorderRadius.circular(20),
-      //  color: selected ? Colors.amber : Colors.transparent,
+        //  color: selected ? Colors.amber : Colors.transparent,
         child: InkWell(
           onTap: () {
             Navigator.pop(context);
             setState(() {
               if (id == 1) {
                 currentpage = DrawerSection.Dashboard;
-              } else if ( id == 2){
+              } else if (id == 2) {
                 currentpage = DrawerSection.Setting;
               }
             });
@@ -80,14 +84,12 @@ class _HomescreenState extends State<Homescreen> {
 
   @override
   Widget build(BuildContext context) {
+    
     var container;
     if (currentpage == DrawerSection.Dashboard) {
       container = Dashboard();
-    } else if (
-      currentpage == DrawerSection.Setting
-    ){
-      container =  Setting();
-    
+    } else if (currentpage == DrawerSection.Setting) {
+      container = Setting();
     }
 
     return SafeArea(
@@ -110,16 +112,19 @@ class _HomescreenState extends State<Homescreen> {
         ),
         body: container,
         bottomNavigationBar: BottomNavigationBar(
-          type: BottomNavigationBarType.fixed, 
+          type: BottomNavigationBarType.fixed,
           iconSize: 30,
           selectedFontSize: 10,
           unselectedFontSize: 12,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: "",),
-            BottomNavigationBarItem(icon: Icon(Icons.video_library),label: "",),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart),label: "",),
-            BottomNavigationBarItem(icon: Icon(Icons.person_rounded),label: "",),
+            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.video_library), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person_rounded),
+              label: "",
+            ),
           ],
         ),
 

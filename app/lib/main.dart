@@ -1,23 +1,5 @@
-// import 'package:app/homeScreen/drawer/Dashboard.dart';
-// import 'package:app/homeScreen/drawer/Hader.dart';
-// import 'package:app/homeScreen/drawer/Newres.dart';
-// import 'package:app/homeScreen/drawer/Sinhglshop.dart';
-import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
-import 'package:app/homeScreen/drawer/animation.dart';
-import 'package:app/homeScreen/drawer/review.dart';
-import 'package:app/homeScreen/drawer/profilepage.dart';
-import 'package:app/homeScreen/drawer/payment.dart';
-import 'package:app/homeScreen/drawer/setitng.dart';
-import 'package:app/homeScreen/drawer/sinhg.dart';
-import 'package:app/homeScreen/homescreen.dart';
-// import 'package:app/homeScreen/drawer/id2.dart';
-// import 'package:app/homeScreen/drawer/idveg.dart';
-// import 'package:app/homeScreen/drawer/inform.dart';
-// import 'package:app/homeScreen/drawer/search.dart';
-// import 'package:app/homeScreen/drawer/shopmannu.dart';
-// import 'package:app/homeScreen/drawer/three.dart';
-// import 'package:app/homeScreen/homescreen.dart';
+
 import 'package:flutter/material.dart';
 
 void main() {

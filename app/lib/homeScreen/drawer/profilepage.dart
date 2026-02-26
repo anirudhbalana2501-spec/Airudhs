@@ -1,5 +1,5 @@
-import 'dart:ffi';
-import 'dart:math';
+//import 'dart:ffi';
+//import 'dart:math';
 
 import 'package:app/homeScreen/drawer/id2.dart';
 import 'package:app/homeScreen/drawer/idveg.dart';
@@ -21,9 +21,14 @@ class ProfilePage extends StatelessWidget {
     void veg() {
       Navigator.push(context, MaterialPageRoute(builder: (context) => Idveg()));
     }
-void payment() {
-      Navigator.push(context, MaterialPageRoute(builder: (context) => Payment()));
+
+    void payment() {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Payment()),
+      );
     }
+
     return Scaffold(
       backgroundColor: Colors.grey.shade100,
       // appBar: AppBar(
@@ -105,7 +110,7 @@ void payment() {
                               size: 29,
                             ),
                           ),
-                          SizedBox(height: 8,),
+                          SizedBox(height: 8),
                           Text(
                             "Premium Access",
                             style: TextStyle(
@@ -176,8 +181,11 @@ void payment() {
                                   padding: const EdgeInsets.only(left: 5),
                                   child: Row(
                                     children: [
-                                  Image.asset('assets/images/icons8-wallet-100.png', scale: 3,),
-                                  SizedBox(width: 10,),
+                                      Image.asset(
+                                        'assets/images/icons8-wallet-100.png',
+                                        scale: 3,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         "Zomato Money",
                                         style: TextStyle(
@@ -224,8 +232,12 @@ void payment() {
                                   padding: const EdgeInsets.only(left: 10),
                                   child: Row(
                                     children: [
-                                      Image.asset('assets/images/icons8-gift-box-100.png', scale: 3, color: Colors.amber,),
-                                      SizedBox(width: 10,),
+                                      Image.asset(
+                                        'assets/images/icons8-gift-box-100.png',
+                                        scale: 3,
+                                        color: Colors.amber,
+                                      ),
+                                      SizedBox(width: 10),
                                       Text(
                                         "Your Rewards",
                                         style: TextStyle(
@@ -361,53 +373,53 @@ void payment() {
               ),
               SizedBox(height: 2),
               GestureDetector(
-                onTap: payment, child: 
-              Container(
-                padding: EdgeInsets.all(0),
-                height: 70,
-                width: 320,
-                decoration: BoxDecoration(
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 15),
-                  child: Row(
-                    children: [
-                      Image.asset(
-                        'assets/images/icons8-wallet-100.png',
-                        scale: 3,
-                      ),
-                      //Icon(Icons.wallet, size: 30, color: Colors.green),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 10),
-                      //   child: Center(
-                      //     child: Container(
-                      //       height: 8,
-                      //       width: 8,
-                      //       decoration: BoxDecoration(
-                      //         color: Colors.green,
-                      //         shape: BoxShape.circle,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
-                      SizedBox(width: 20),
-                      Text(
-                        "Payment menthods",
-                        style: TextStyle(
-                          fontSize: 15,
-                          fontWeight: FontWeight.bold,
+                onTap: payment,
+                child: Container(
+                  padding: EdgeInsets.all(0),
+                  height: 70,
+                  width: 320,
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15),
+                    child: Row(
+                      children: [
+                        Image.asset(
+                          'assets/images/icons8-wallet-100.png',
+                          scale: 3,
                         ),
-                      ),
-                      SizedBox(width: 80),
-                      //Text("on"),
-                      //SizedBox(width: 5),
-                      Icon(Icons.arrow_right, size: 27),
-                    ],
+                        //Icon(Icons.wallet, size: 30, color: Colors.green),
+                        // Padding(
+                        //   padding: const EdgeInsets.only(top: 10),
+                        //   child: Center(
+                        //     child: Container(
+                        //       height: 8,
+                        //       width: 8,
+                        //       decoration: BoxDecoration(
+                        //         color: Colors.green,
+                        //         shape: BoxShape.circle,
+                        //       ),
+                        //     ),
+                        //   ),
+                        // ),
+                        SizedBox(width: 20),
+                        Text(
+                          "Payment menthods",
+                          style: TextStyle(
+                            fontSize: 15,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        SizedBox(width: 80),
+                        //Text("on"),
+                        //SizedBox(width: 5),
+                        Icon(Icons.arrow_right, size: 27),
+                      ],
+                    ),
                   ),
                 ),
-              ),
               ),
               SizedBox(height: 20),
               Padding(

@@ -303,7 +303,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                               padding: const EdgeInsets.only(top: 10),
                               child: Container(
                                 padding: EdgeInsets.all(0),
-                                height: 40,
+                                height: 45,
                                 width: 39,
                                 decoration: BoxDecoration(
                                   color: Colors.white,
@@ -327,7 +327,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                             SizedBox(width: 40),
                             Container(
                               padding: EdgeInsets.all(0),
-                              height: 40,
+                              height: 45,
                               width: 39,
                               decoration: BoxDecoration(
                                 color: Colors.white,
