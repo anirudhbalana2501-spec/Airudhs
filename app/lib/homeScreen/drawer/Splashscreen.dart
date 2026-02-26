@@ -14,13 +14,6 @@ class _SplashscreenState extends State<Splashscreen> {
    @override
   void initState() {
     super.initState();
-
-    // Timer(const Duration(seconds: 3), () {
-    //   Navigator.pushReplacement(
-    //     context,
-    //     MaterialPageRoute(builder: (context) => const Homescreen()),
-    //   );
-    // });
        
      Timer( Duration(seconds: 3),(){
       Navigator.pushReplacement(
@@ -36,13 +29,6 @@ class _SplashscreenState extends State<Splashscreen> {
       backgroundColor: Colors.amber.shade200,
       body: Center(
         child: Image.asset('assets/images/logo.png')
-        // Text(
-        //   "My App",
-        //   style: TextStyle(
-        //     fontSize: 30,
-        //     fontWeight: FontWeight.bold,
-        //   ),
-        // ),
       ),
     );
   }

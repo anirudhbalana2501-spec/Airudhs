@@ -1,191 +1,61 @@
-import 'dart:ffi';
-
+import 'dart:ui';
 import 'package:flutter/material.dart';
 
-class Three extends StatefulWidget {
+class Three extends StatelessWidget {
   const Three({super.key});
 
   @override
-  State<Three> createState() => _ThreeState();
-}
-
-class _ThreeState extends State<Three> {
-  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white24.withOpacity(0.4),
-      body: Padding(
-        padding: const EdgeInsets.only(top: 250),
-        child: Container(
-          clipBehavior: Clip.antiAlias,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black12,
-                blurRadius: 18,
-                offset: Offset(16, 0),
+    return BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 5, sigmaY: 5),
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.5,
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+        decoration: const BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.vertical(top: Radius.circular(30)),
+        ),
+        child: Column(
+          children: [
+            Container(
+              height: 5,
+              width: 60,
+              margin: const EdgeInsets.only(bottom: 25),
+              decoration: BoxDecoration(
+                color: Colors.grey.shade300,
+                borderRadius: BorderRadius.circular(10),
               ),
-            ],
+            ),
+
+            /// Options
+            _buildTile(Icons.bookmark_border, "Add to Collection", context),
+            _buildTile(Icons.info, "See more about this restaurant", context),
+            _buildTile(Icons.reply, "Share this restaurant", context),
+            _buildTile(Icons.visibility_off, "Hide this restaurant", context),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildTile(IconData icon, String text, BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 12),
+      child: Material(
+        color: Colors.grey.shade100,
+        borderRadius: BorderRadius.circular(15),
+        child: ListTile(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
           ),
-          margin: EdgeInsets.all(10),
-          height: 320,
-          width: MediaQuery.of(context).size.width,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 30),
-                child: Text(
-                  "dataadsssssassaasd",
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  textAlign: TextAlign.justify,
-                ),
-              ),
-        
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 20),
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  height: 47,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: [
-                        Icon(Icons.bookmark_border, size: 28),
-                        SizedBox(width: 20),
-                        Text(
-                          "Add to Collection",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 9),
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  height: 47,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: [
-                        Icon(Icons.info, size: 28),
-                        SizedBox(width: 20),
-                        Text(
-                          "See more about this restaurant",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 9),
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  height: 47,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: [
-                        Icon(Icons.reply, size: 28),
-                        SizedBox(width: 20),
-                        Text(
-                          "Share this restaurant",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(left: 0, top: 10),
-                child: Container(
-                  padding: EdgeInsets.all(0),
-                  height: 47,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
-                    borderRadius: BorderRadius.circular(10),
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.black12,
-                        blurRadius: 8,
-                        offset: Offset(0, 4),
-                      ),
-                    ],
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: Row(
-                      children: [
-                        Icon(Icons.visibility_off, size: 28),
-                        SizedBox(width: 20),
-                        Text(
-                          "Hide this restaurant",
-                          style: TextStyle(
-                            fontSize: 17,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-              ),
-            ],
+          leading: Icon(icon),
+          title: Text(
+            text,
+            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
           ),
+          onTap: () {
+            Navigator.pop(context);
+          },
         ),
       ),
     );

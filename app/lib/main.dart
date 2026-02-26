@@ -4,7 +4,8 @@
 // import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
-import 'package:app/homeScreen/drawer/aaaa.dart';
+import 'package:app/homeScreen/drawer/animation.dart';
+import 'package:app/homeScreen/drawer/review.dart';
 import 'package:app/homeScreen/drawer/profilepage.dart';
 import 'package:app/homeScreen/drawer/payment.dart';
 import 'package:app/homeScreen/drawer/setitng.dart';

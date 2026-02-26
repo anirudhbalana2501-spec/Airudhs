@@ -1,7 +1,7 @@
 //import 'package:app7/src/screen/GalleryScreen.dart';
 //import 'package:app7/src/screen/MenuScreen.dart';
 //import 'package:app7/src/screen/ReviewScreen.dart';
-import 'dart:ffi';
+//import 'dart:ffi';
 
 import 'package:app/homeScreen/drawer/Dashboard.dart';
 import 'package:app/homeScreen/drawer/inform.dart';
@@ -180,7 +180,12 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                   ),
                   SizedBox(width: 70),
                   GestureDetector(
-                    onTap: thr,
+                    onTap: () {
+                      showModalBottomSheet(context: context, 
+                      backgroundColor: Colors.transparent,
+                      isScrollControlled: true,
+                      builder: (context){return Three();});
+                    },
                     child: Icon(Icons.more_vert_outlined),
                   ),
                   //Icon(Icons.more_vert_outlined),
