@@ -1,6 +1,6 @@
 //import 'dart:nativewrappers/_internal/vm/bin/vmservice_io.dart';
 
-import 'package:app/homeScreen/drawer/Newres.dart';
+import 'package:app/homeScreen/drawer/shopcomponet.dart';
 import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/profilepage.dart';
 import 'package:app/homeScreen/drawer/newrestro.dart';

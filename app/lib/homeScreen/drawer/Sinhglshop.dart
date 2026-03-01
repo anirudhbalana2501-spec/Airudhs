@@ -1,15 +1,7 @@
-//import 'package:app7/src/screen/GalleryScreen.dart';
-//import 'package:app7/src/screen/MenuScreen.dart';
-//import 'package:app7/src/screen/ReviewScreen.dart';
-//import 'dart:ffi';
-
 import 'package:app/homeScreen/drawer/Dashboard.dart';
 import 'package:app/homeScreen/drawer/inform.dart';
 import 'package:app/homeScreen/drawer/three.dart';
 import 'package:flutter/material.dart';
-//import 'package:flutter/src/widgets/framework.dart';
-//import 'package:flutter/src/widgets/placeholder.dart';
-//import 'package:url_launcher/url_launcher.dart' as UrlLauncher;
 
 // ignore: must_be_immutable
 class SingleShopScreen extends StatefulWidget {
@@ -181,10 +173,14 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                   SizedBox(width: 70),
                   GestureDetector(
                     onTap: () {
-                      showModalBottomSheet(context: context, 
-                      backgroundColor: Colors.transparent,
-                      isScrollControlled: true,
-                      builder: (context){return Three();});
+                      showModalBottomSheet(
+                        context: context,
+                        backgroundColor: Colors.transparent,
+                        isScrollControlled: true,
+                        builder: (context) {
+                          return Three();
+                        },
+                      );
                     },
                     child: Icon(Icons.more_vert_outlined),
                   ),
@@ -416,7 +412,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                   child: Container(
                     padding: EdgeInsets.all(0),
                     margin: EdgeInsets.symmetric(horizontal: 10),
-                   // height: 480,
+                    // height: 480,
                     decoration: BoxDecoration(
                       color: Colors.grey.shade200,
                       borderRadius: BorderRadius.circular(10),
@@ -444,8 +440,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                       isManuOpen = !isManuOpen;
                                     });
                                   },
-                                  child:
-                                   AnimatedRotation(
+                                  child: AnimatedRotation(
                                     turns: isManuOpen ? 0.5 : 0,
                                     duration: Duration(milliseconds: 250),
                                     child: CircleAvatar(
@@ -457,8 +452,6 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                       ),
                                     ),
                                   ),
-
-
                                 ),
                               ],
                             ),
@@ -1041,13 +1034,16 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                                 ],
                                               ),
                                             ),
-
-                                            
-
                                           ],
                                         ),
 
-                                       Text("data", style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),) 
+                                      Text(
+                                        "data",
+                                        style: TextStyle(
+                                          fontSize: 30,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
                                     ],
                                   ),
                                 ),

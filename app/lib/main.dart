@@ -1,4 +1,7 @@
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
+import 'package:app/homeScreen/drawer/logine.dart';
+import 'package:app/homeScreen/drawer/loginhome.dart';
+import 'package:app/homeScreen/homescreen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -33,7 +36,15 @@ class MyApp extends StatelessWidget {
         // tested with just a hot reload.
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
       ),
-      home: Splashscreen(),
+      initialRoute: "/",
+
+      routes: {
+        "/" : (context) => Splashscreen(),
+        "Login": (context) => Logine(),
+        
+      },
+
+      // home: Splashscreen(),
     );
   }
 }

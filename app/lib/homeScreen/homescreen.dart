@@ -1,13 +1,12 @@
 import 'package:app/homeScreen/drawer/Hader.dart';
-//import 'package:app/homeScreen/drawer/Myprofile.dart';
-import 'package:app/homeScreen/drawer/Newres.dart';
-import 'package:app/homeScreen/drawer/Save.dart';
 import 'package:app/homeScreen/drawer/Dashboard.dart';
 import 'package:app/homeScreen/drawer/setitng.dart';
 import 'package:flutter/material.dart';
 
 class Homescreen extends StatefulWidget {
-  const Homescreen({super.key});
+   final String name;
+  final String password;
+  const Homescreen({super.key , required this.name, required this.password});
 
   @override
   State<Homescreen> createState() => _HomescreenState();

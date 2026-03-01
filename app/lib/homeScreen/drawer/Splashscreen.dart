@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:app/homeScreen/drawer/logine.dart';
 import 'package:app/homeScreen/homescreen.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +19,7 @@ class _SplashscreenState extends State<Splashscreen> {
      Timer( Duration(seconds: 3),(){
       Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context)=> const Homescreen())
+      MaterialPageRoute(builder: (context)=> const Logine())
       );
      });  
 

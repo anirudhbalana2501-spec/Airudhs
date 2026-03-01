@@ -56,7 +56,7 @@ class _ShopComponentState extends State<ShopComponent> {
                 Positioned(
                   top: 12,
                   left: 12,
-                  
+
                   child: Container(
                     padding: EdgeInsets.symmetric(horizontal: 10, vertical: 6),
                     decoration: BoxDecoration(
@@ -79,7 +79,7 @@ class _ShopComponentState extends State<ShopComponent> {
                       color: Colors.white,
                       shape: BoxShape.circle,
                     ),
-                    child: const Icon(Icons.bookmark_border),
+                    child: const Icon(Icons.favorite),
                   ),
                 ),
               ],

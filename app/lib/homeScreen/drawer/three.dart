@@ -1,4 +1,6 @@
 import 'dart:ui';
+import 'package:app/homeScreen/drawer/inform.dart';
+import 'package:app/homeScreen/drawer/search.dart';
 import 'package:flutter/material.dart';
 
 class Three extends StatelessWidget {
@@ -17,47 +19,71 @@ class Three extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Container(
-              height: 5,
-              width: 60,
-              margin: const EdgeInsets.only(bottom: 25),
-              decoration: BoxDecoration(
-                color: Colors.grey.shade300,
-                borderRadius: BorderRadius.circular(10),
+            Material(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(15),
+              child: ListTile(
+                leading: Icon(Icons.bookmark_border),
+                title: Text("Add to Collection"),
+                onTap: () {
+                  Navigator.pop(context);
+                  Future.delayed(const Duration(milliseconds: 200), () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Searchitem()),
+                    );
+                  });
+                },
               ),
             ),
 
-            /// Options
-            _buildTile(Icons.bookmark_border, "Add to Collection", context),
-            _buildTile(Icons.info, "See more about this restaurant", context),
-            _buildTile(Icons.reply, "Share this restaurant", context),
-            _buildTile(Icons.visibility_off, "Hide this restaurant", context),
+            SizedBox(height: 10),
+
+            Material(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(15),
+              child: ListTile(
+                leading: Icon(Icons.info),
+                title: Text("See more about this restaurant"),
+                onTap: () {
+                  Navigator.pop(context);
+                  Future.delayed(Duration(milliseconds: 200), (){
+                    Navigator.push(
+                     context, 
+                     MaterialPageRoute(builder: (context) => Inform())
+                    );
+                  });
+                },
+              ),
+            ),
+
+            SizedBox(height: 10),
+
+            Material(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(15),
+              child: ListTile(
+                leading: Icon(Icons.reply),
+                title: Text("Share this restaurant"),
+                onTap: () {},
+              ),
+            ),
+
+            SizedBox(height: 10),
+
+            Material(
+              color: Colors.grey.shade100,
+              borderRadius: BorderRadius.circular(15),
+              child: ListTile(
+                leading: Icon(Icons.visibility_off),
+                title: Text("Hide this restaurant"),
+                onTap: () {},
+              ),
+            ),
           ],
         ),
       ),
     );
   }
-
-  Widget _buildTile(IconData icon, String text, BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 12),
-      child: Material(
-        color: Colors.grey.shade100,
-        borderRadius: BorderRadius.circular(15),
-        child: ListTile(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15),
-          ),
-          leading: Icon(icon),
-          title: Text(
-            text,
-            style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-          ),
-          onTap: () {
-            Navigator.pop(context);
-          },
-        ),
-      ),
-    );
-  }
 }
+

@@ -1,5 +1,5 @@
 import 'package:app/homeScreen/drawer/Dashboard.dart';
-import 'package:app/homeScreen/drawer/Newres.dart';
+import 'package:app/homeScreen/drawer/shopcomponet.dart';
 import 'package:app/homeScreen/drawer/newrestro.dart';
 import 'package:flutter/material.dart';
 
