@@ -40,7 +40,8 @@ class MyApp extends StatelessWidget {
 
       routes: {
         "/" : (context) => Splashscreen(),
-        "Login": (context) => Logine(),
+        "/login": (context) => Logine(),
+        "/home" : (context)=> Homescreen(name: "name", password: "password"),
         
       },
 

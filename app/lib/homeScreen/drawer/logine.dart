@@ -1,6 +1,7 @@
 import 'package:app/homeScreen/drawer/loginhome.dart';
 import 'package:app/homeScreen/homescreen.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Logine extends StatefulWidget {
   const Logine({super.key});
@@ -14,6 +15,11 @@ class _LogineState extends State<Logine> {
   TextEditingController passwordController = TextEditingController();
 
   bool ispasswordHidden = true;
+
+  Future<void> saveLoginState() async {
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.setBool("isLoggedIn", true);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -81,14 +87,14 @@ class _LogineState extends State<Logine> {
               const SizedBox(height: 25),
 
               ElevatedButton(
-                onPressed: () {
+                onPressed: () async {
                   print(nameController.text);
 
                   String name = nameController.text.trim();
                   String password = passwordController.text.trim();
 
-                  String correctUsername = "anirudh";
-                  String correctpassword = "123456";
+                  String correctUsername = "name";
+                  String correctpassword = "password";
 
                   if (name.isEmpty || password.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
@@ -96,11 +102,12 @@ class _LogineState extends State<Logine> {
                     );
                   } else if (name == correctUsername &&
                       password == correctpassword) {
+                    await saveLoginState();
                     Navigator.pushReplacement(
                       context,
                       MaterialPageRoute(
                         builder: (context) =>
-                            Homescreen(name: "anirudh", password: "123456"),
+                            Homescreen(name: "name", password: "password"),
                       ),
                     );
                   } else {
