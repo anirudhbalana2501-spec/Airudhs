@@ -1,6 +1,6 @@
 import 'package:app/homeScreen/drawer/Hader.dart';
 import 'package:app/homeScreen/drawer/Dashboard.dart';
-import 'package:app/homeScreen/drawer/setitng.dart';
+import 'package:app/homeScreen/drawer/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -31,7 +31,7 @@ class _HomescreenState extends State<Homescreen> {
           ),
           menuItem(
             2,
-            "Setting",
+            "Logout",
             Icons.logout_outlined,
             currentpage == DrawerSection.Logout ? true : false,
           ),
@@ -55,36 +55,38 @@ class _HomescreenState extends State<Homescreen> {
                 currentpage = DrawerSection.Dashboard;
               });
             } else if (id == 2) {
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool("isLoggedIn", false);
-
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/login",
-                (route) => false,
+              bool? confirm = await showDialog(
+                context: context,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text("Logout"),
+                    content: const Text("Are you sure you want to logout?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, false),
+                        child: const Text("Cancel"),
+                      ),
+                      TextButton(
+                        onPressed: () => Navigator.pop(context, true),
+                        child: const Text("Yes"),
+                      ),
+                    ],
+                  );
+                },
               );
+
+              if (confirm == true) {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool("isLoggedIn", false);
+
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  "/login",
+                  (route) => false,
+                );
+              }
             }
           },
-          // {
-          //   Navigator.pop(context);
-          //   setState(() async {
-          //     if (id == 1) {
-          //       currentpage = DrawerSection.Dashboard;
-          //     } else if (id == 2) {
-          //       final prefs = await SharedPreferences.getInstance();
-          //       await prefs.setBool("isLoggedIn", false);
-
-          //       // ✅ Saare screen hata ke login par bhejo
-          //       Navigator.pushNamedAndRemoveUntil(
-          //         context,
-          //         "/login",
-          //         (route) => false,
-          //       );
-
-          //       //currentpage = DrawerSection.Setting;
-          //     }
-          //   });
-          // },
           child: Padding(
             padding: const EdgeInsets.all(15),
             child: Row(

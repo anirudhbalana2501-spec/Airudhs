@@ -30,7 +30,7 @@ class _SplashscreenState extends State<Splashscreen> {
       context,
       MaterialPageRoute(
         builder: (context) =>
-            Homescreen(name: "anirudh", password: "123456"),
+            Homescreen(name: "name", password: "password"),
       ),
     );
   } else {

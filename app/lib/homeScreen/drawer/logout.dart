@@ -20,14 +20,41 @@ class _LogoutState extends State<Logout> {
             "",
             "Logout",
             onTap: () async {
-              final prefs = await SharedPreferences.getInstance();
-              await prefs.setBool("isLoggedIn", false);
+              bool? confirm = await showDialog(
+                context: Navigator.of(context, rootNavigator: true).context,
 
-              Navigator.pushNamedAndRemoveUntil(
-                context,
-                "/login",
-                (route) => false,
+                builder: (context) {
+                  return AlertDialog(
+                    title: const Text("Logout"),
+                    content: const Text("Are you sure you want to logout?"),
+                    actions: [
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, false);
+                        },
+                        child: const Text("Cancel"),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.pop(context, true);
+                        },
+                        child: const Text("Yes"),
+                      ),
+                    ],
+                  );
+                },
               );
+
+              if (confirm == true) {
+                final prefs = await SharedPreferences.getInstance();
+                await prefs.setBool("isLoggedIn", false);
+
+                Navigator.pushNamedAndRemoveUntil(
+                  context,
+                  "/login",
+                  (route) => false,
+                );
+              }
             },
           ),
 
