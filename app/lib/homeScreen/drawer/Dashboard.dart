@@ -17,13 +17,19 @@ class Dashboard extends StatefulWidget {
 
 class _DashboardState extends State<Dashboard> {
   @override
-  List<String> shopname = ["Taco Bell", "LAXMI BAKEY", "Shiv sagar cafe", "frredy food cafe", "Kishana Restaurant",];
+  List<String> shopname = [
+    "Taco Bell",
+    "LAXMI BAKEY",
+    "Shiv sagar cafe",
+    "frredy food cafe",
+    "Kishana Restaurant",
+  ];
   List<String> shoploc = [
     "Shop No 04, Food Court, 3rd Floor",
     "Ram Gali Number 6, opp. Dashera Maidan",
     "Near Hanuman Dhaba, Jaipur, 302004, Raja park",
     "2nd Parking of fort",
-    "SBI Bank shive road old city"
+    "SBI Bank shive road old city",
   ];
   List<String> shopimage = [
     "assets/images/shopImage/shop1.jpg",
@@ -31,7 +37,6 @@ class _DashboardState extends State<Dashboard> {
     "assets/images/shopImage/shop3.jpg",
     "assets/images/download.jpg",
     "assets/images/download (1).jpg",
-     
   ];
   List<Map<String, dynamic>> shop = [
     {
@@ -195,6 +200,23 @@ class _DashboardState extends State<Dashboard> {
     //"assets/images/allitems/south-indian.png",
   ];
 
+  List<String> food = [
+    "Kachori",
+    "North India",
+    "Sweets",
+    "Pyaaj Kachori",
+    "Poha",
+    //"South Indian",
+  ];
+  List<String> image = [
+    "assets/images/allitems/kachori.png",
+    "assets/images/allitems/north indian.png",
+    "assets/images/allitems/sweet.png",
+    "assets/images/allitems/pyaaj kachori.jpg",
+    "assets/images/allitems/poha.jpg",
+    //"assets/images/allitems/south-indian.png",
+  ];
+
   // List<String> allfoodd = [
   //   "Kachor",
   //   "North India",
@@ -277,7 +299,7 @@ class _DashboardState extends State<Dashboard> {
     print("object");
     Navigator.of(context).push(
       MaterialPageRoute(
-        builder: (context) => Shopmannu(
+        builder: (context) => SingleShopScreen(
           image: iimage,
           pname: pname,
           location: location,
@@ -286,6 +308,29 @@ class _DashboardState extends State<Dashboard> {
       ),
     );
   }
+
+  allitess2(
+    String iimage,
+    String name,
+    String pname,
+    String location,
+    String foods,
+    String namms,
+  ) {
+    print("object");
+  //   Navigator.of(context).push(
+  //     MaterialPageRoute(
+  //       builder: (context) => SingleShopScreen(
+  //         image: iimage,
+  //         pname: pname,
+  //         location: location,
+  //         name: name,
+  //         foods: foods,
+  //         namms: namms,
+  //       ),
+  //     ),
+  //   );
+   }
 
   allmenuite() {
     Navigator.of(
@@ -299,6 +344,7 @@ class _DashboardState extends State<Dashboard> {
       MaterialPageRoute(builder: (context) => Searchitem()),
     );
   }
+
   void prd() {
     Navigator.push(
       context,
@@ -537,6 +583,33 @@ class _DashboardState extends State<Dashboard> {
                         ),
                       ),
 
+                      SizedBox(height: 10),
+
+                      // SingleChildScrollView(
+                      //   scrollDirection: Axis.horizontal,
+                      //   child: Row(
+                      //     children: [
+                      //       for (int s = 0; s < food.length; s++)
+                      //         Allitem(
+                      //           foods: image[s],
+                      //           namms: food[s],
+                      //           iimage: allimage[s],
+                      //           name: allfood[s],
+                      //           asd: () {
+                      //             allitess2(
+                      //               image[s],
+                      //               food[s],
+                      //               allimage[s],
+                      //               allfood[s],
+                      //               shopname[s],
+                      //               shoploc[s],
+                      //             );
+                      //           },
+                      //         ),
+                      //     ],
+                      //   ),
+                      // ),
+
                       // SizedBox(
                       //   height: 120,
                       //   child: ListView.builder(
@@ -592,7 +665,7 @@ class _DashboardState extends State<Dashboard> {
                               image: shopimage[i],
                               pname: shopname[i],
                               location: shoploc[i],
-                            
+
                               btn: () {
                                 SingleSho11(
                                   shopname[i],

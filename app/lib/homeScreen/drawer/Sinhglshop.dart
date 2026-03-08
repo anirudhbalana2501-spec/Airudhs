@@ -9,6 +9,9 @@ class SingleShopScreen extends StatefulWidget {
   String? image;
   String? location;
   String? shop;
+  String? name;
+  String? foods;
+  String? namms;
   List<Map<String, dynamic>>? menuitem;
   SingleShopScreen({
     super.key,
@@ -17,6 +20,10 @@ class SingleShopScreen extends StatefulWidget {
     this.location,
     this.menuitem,
     this.shop,
+    this.name,
+    this.foods,
+    this.namms,
+
   });
 
   @override

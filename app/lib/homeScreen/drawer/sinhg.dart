@@ -193,14 +193,14 @@ class _SinhgState extends State<Sinhg> {
 
                                         SizedBox(width: 10),
 
-                                        /// RIGHT SIDE IMAGE + BUTTON
+                                        
                                         Column(
                                           children: [
                                             ClipRRect(
                                               borderRadius:
                                                   BorderRadius.circular(15),
                                               child: Image.asset(
-                                                "assets/images/manu/thali/istockphoto-1458973879-2048x2048.jpg", // apni image lagao
+                                                "assets/images/manu/thali/istockphoto-1458973879-2048x2048.jpg", 
                                                 height: 120,
                                                 width: 120,
                                                 fit: BoxFit.cover,

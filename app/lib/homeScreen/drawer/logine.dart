@@ -88,14 +88,14 @@ class _LogineState extends State<Logine> {
 
               ElevatedButton(
                 onPressed: () async {
-                  print(nameController.text);
+                 // print(nameController.text);
 
                   String name = nameController.text.trim();
                   String password = passwordController.text.trim();
 
                   String correctUsername = "name";
                   String correctpassword = "password";
-
+ 
                   if (name.isEmpty || password.isEmpty) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(content: Text("Please enter name and password")),

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:app/components/shop_component.dart';
+//import 'package:app/components/shop_component.dart';
 
 // ignore: must_be_immutable
 class ShopComponent extends StatefulWidget {

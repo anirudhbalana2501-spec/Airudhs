@@ -15,34 +15,86 @@ class _LogoutState extends State<Logout> {
       color: Colors.amber,
       child: Column(
         children: [
-          //buildField("", "Language", change: true),
           buildField(
             "",
             "Logout",
-            onTap: () async {
-              bool? confirm = await showDialog(
-                context: Navigator.of(context, rootNavigator: true).context,
 
-                builder: (context) {
-                  return AlertDialog(
-                    title: const Text("Logout"),
-                    content: const Text("Are you sure you want to logout?"),
-                    actions: [
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context, false);
-                        },
-                        child: const Text("Cancel"),
+            onTap: () async {
+              bool? confirm = await showGeneralDialog(
+                 context: Navigator.of(context, rootNavigator: true).context,
+                //context: context,
+                barrierDismissible: true,
+                barrierLabel: "Logout",
+                transitionDuration: Duration(milliseconds: 300),
+
+                pageBuilder: (context, animation, secondaryAnimation) {
+                  return Center(
+                    child: Material(
+                      borderRadius: BorderRadius.circular(20),
+                      child: Container(
+                        width: 300,
+                        padding: EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(20),
+                        ),
+
+                        child: Column(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Icon(Icons.logout, size: 50, color: Colors.red),
+
+                            SizedBox(height: 15),
+
+                            Text(
+                              "Logout",
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+
+                            SizedBox(height: 10),
+
+                            Text("Are you sure you want to logout?"),
+
+                            SizedBox(height: 20),
+
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                              children: [
+                                TextButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, false);
+                                  },
+                                  child: Text("Cancel"),
+                                ),
+
+                                ElevatedButton(
+                                  onPressed: () {
+                                    Navigator.pop(context, true);
+                                  },
+                                  child: Text("Yes"),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pop(context, true);
-                        },
-                        child: const Text("Yes"),
-                      ),
-                    ],
+                    ),
                   );
                 },
+
+                transitionBuilder:
+                    (context, animation, secondaryAnimation, child) {
+                      return ScaleTransition(
+                        scale: CurvedAnimation(
+                          parent: animation,
+                          curve: Curves.easeInOut,
+                        ),
+                        child: child,
+                      );
+                    },
               );
 
               if (confirm == true) {
@@ -54,11 +106,12 @@ class _LogoutState extends State<Logout> {
                   "/login",
                   (route) => false,
                 );
+               const SizedBox(height: 20);
               }
             },
+           
           ),
-
-          const SizedBox(height: 20),
+          //const SizedBox(height: 20),
         ],
       ),
     );

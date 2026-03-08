@@ -1,7 +1,7 @@
 //import 'dart:ffi';
 //import 'dart:math';
 
-import 'package:app/homeScreen/drawer/id2.dart';
+import 'package:app/homeScreen/drawer/profilescreen.dart';
 import 'package:app/homeScreen/drawer/idveg.dart';
 import 'package:app/homeScreen/drawer/payment.dart';
 import 'package:flutter/material.dart';
@@ -498,22 +498,6 @@ class ProfilePage extends StatelessWidget {
                         color: Colors.green,
                         // fit: BoxFit.contain,
                       ),
-
-                      //Image.asset('assets/images/icons8-address-book-100.png', scale: 7,),
-                      // Icon(Icons.eco, size: 30, color: Colors.green),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 10),
-                      //   child: Center(
-                      //     child: Container(
-                      //       height: 8,
-                      //       width: 8,
-                      //       decoration: BoxDecoration(
-                      //         color: Colors.green,
-                      //         shape: BoxShape.circle,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       SizedBox(width: 20),
                       Text(
                         "Address Book",
@@ -551,22 +535,6 @@ class ProfilePage extends StatelessWidget {
                         color: Colors.green,
                         // fit: BoxFit.contain,
                       ),
-
-                      //Image.asset('assets/images/icons8-address-book-100.png', scale: 7,),
-                      // Icon(Icons.eco, size: 30, color: Colors.green),
-                      // Padding(
-                      //   padding: const EdgeInsets.only(top: 10),
-                      //   child: Center(
-                      //     child: Container(
-                      //       height: 8,
-                      //       width: 8,
-                      //       decoration: BoxDecoration(
-                      //         color: Colors.green,
-                      //         shape: BoxShape.circle,
-                      //       ),
-                      //     ),
-                      //   ),
-                      // ),
                       SizedBox(width: 20),
                       Text(
                         "Oder on train",
