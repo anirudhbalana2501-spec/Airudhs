@@ -20,9 +20,9 @@ class SingleShopScreen extends StatefulWidget {
     this.location,
     this.menuitem,
     this.shop,
-    this.name,
-    this.foods,
-    this.namms,
+    // this.name,
+    // this.foods,
+    // this.namms, required String imagee,
 
   });
 

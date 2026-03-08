@@ -6,9 +6,10 @@ class Shopmannu extends StatefulWidget {
   final String? pname;
   final String? location;
   final String? name;
+  final String? imagee;
+  final String? food;
   //final dynamic Function()? btn;
-  //final String namee;
-  //final String imagee;
+ 
 
   const Shopmannu({
     super.key,
@@ -17,6 +18,8 @@ class Shopmannu extends StatefulWidget {
     //this.btn,
     this.location,
     this.name,
+    this.food,
+    this.imagee
   });
 
   @override

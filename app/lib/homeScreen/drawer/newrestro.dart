@@ -53,7 +53,7 @@ class _AllitemState extends State<Allitem> {
           ),
         ),
 
-        SizedBox(height: 5),
+        
 
 //         InkWell(
 //           onTap: widget.asd,

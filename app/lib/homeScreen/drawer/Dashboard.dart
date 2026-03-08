@@ -303,7 +303,7 @@ class _DashboardState extends State<Dashboard> {
           image: iimage,
           pname: pname,
           location: location,
-          name: name,
+         // name: name,
         ),
       ),
     );
