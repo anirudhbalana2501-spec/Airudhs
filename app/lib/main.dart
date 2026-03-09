@@ -1,12 +1,15 @@
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
 import 'package:app/homeScreen/drawer/logine.dart';
 import 'package:app/homeScreen/drawer/loginhome.dart';
+import 'package:app/homeScreen/drawer/saver.dart';
 import 'package:app/homeScreen/homescreen.dart';
 
 import 'package:flutter/material.dart';
 
-void main() {
-  runApp(const MyApp());
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await loadFavorites(); 
+  runApp( MyApp());
 }
 
 class MyApp extends StatelessWidget {

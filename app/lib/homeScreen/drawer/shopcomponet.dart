@@ -1,4 +1,10 @@
+import 'package:app/homeScreen/drawer/colorrating.dart';
+import 'package:app/homeScreen/drawer/favorite.dart';
+import 'package:app/homeScreen/drawer/saver.dart';
 import 'package:flutter/material.dart';
+//import 'package:app/components/colorrating.dart';
+//import 'package:shared_preferences/shared_preferences.dart';
+
 //import 'package:app/components/shop_component.dart';
 
 // ignore: must_be_immutable
@@ -6,10 +12,15 @@ class ShopComponent extends StatefulWidget {
   final String? image;
   final String? pname;
   final String? location;
-
+  final String? numm;
   final dynamic Function()? btn;
   const ShopComponent({
-    super.key, this.image, this.pname,this.location,this.btn,
+    super.key,
+    this.image,
+    this.pname,
+    this.location,
+    this.btn,
+    required this.numm,
   });
 
   @override
@@ -17,6 +28,14 @@ class ShopComponent extends StatefulWidget {
 }
 
 class _ShopComponentState extends State<ShopComponent> {
+  bool isFavorite = false;
+  @override
+  void initState() {
+    super.initState();
+
+    isFavorite = favoriteShops.any((shop) => shop['pname'] == widget.pname);
+  }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -72,14 +91,44 @@ class _ShopComponentState extends State<ShopComponent> {
                 Positioned(
                   top: 12,
                   right: 12,
-                  child: Container(
-                    width: 36,
-                    height: 36,
-                    decoration: const BoxDecoration(
-                      color: Colors.white,
-                      shape: BoxShape.circle,
+                  child: GestureDetector(
+                    onTap: () async {
+                      setState(() {
+                        isFavorite = !isFavorite;
+                        if (isFavorite) {
+                          favoriteShops.add({
+                            'image': widget.image,
+                            'pname': widget.pname,
+                            'location': widget.location,
+                            'numm': widget.numm,
+                          });
+                        } else {
+                          favoriteShops.removeWhere(
+                            (shop) => shop['pname'] == widget.pname,
+                          );
+                        }
+                      });
+                      await saveFavorites(); // ✅ Save karo
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => FavoriteScreen(),
+                        ),
+                      );
+                    },
+
+                    child: Container(
+                      width: 36,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        color: Colors.white,
+                        shape: BoxShape.circle,
+                      ),
+                      child: Icon(
+                        isFavorite ? Icons.favorite : Icons.favorite_border,
+                        color: isFavorite ? Colors.green : Colors.grey,
+                      ),
                     ),
-                    child: const Icon(Icons.favorite),
                   ),
                 ),
               ],
@@ -107,13 +156,13 @@ class _ShopComponentState extends State<ShopComponent> {
                           vertical: 4,
                         ),
                         decoration: BoxDecoration(
-                          color: Colors.green,
+                          color: Colorrating.getRatingColor(widget.numm),
                           borderRadius: BorderRadius.circular(6),
                         ),
                         child: Row(
                           children: [
                             Text(
-                              "4.5",
+                              widget.numm ?? "0.0",
                               style: TextStyle(
                                 color: Colors.white,
                                 fontSize: 12,
@@ -196,9 +245,7 @@ class _ShopComponentState extends State<ShopComponent> {
           ],
         ),
       ),
-
     );
-    
   }
 }
 

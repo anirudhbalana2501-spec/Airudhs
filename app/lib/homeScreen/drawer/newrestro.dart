@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 class Allitem extends StatefulWidget {
   final String iimage;
   final String name;
-  final String? foods;
-  final String? namms;
+ // final String? foods;
+ // final String? namms;
   final Function()? res;
   //final Function()? asd;
 
@@ -13,9 +13,9 @@ class Allitem extends StatefulWidget {
     required this.iimage,
     required this.name,
     this.res,
-    this.foods,
-    this.namms,
-   // this.asd,
+   // required this.foods,
+    //required this.namms,
+    //this.asd,
   });
 
   @override
@@ -55,31 +55,31 @@ class _AllitemState extends State<Allitem> {
 
         
 
-//         InkWell(
-//           onTap: widget.asd,
-//           child: Container(
-//             width: 100,
-//             margin: EdgeInsets.symmetric(horizontal: 8),
-//             child: Column(
-//               children: [
-//                 ClipRRect(
-//                   borderRadius: BorderRadius.circular(12),
-//                   child: Image.asset(
-//                     widget.foods ?? "assets/images/default.png",
-//                     height: 80,
-//                     width: 110,
-//                     fit: BoxFit.cover,
-//                   ),
-//                 ),
-//                 SizedBox(height: 5),
-//                 Text(
-//                   widget.namms ?? "",
-//                   overflow: TextOverflow.ellipsis,
-//                 )
-//               ],
-//             ),
-//           ),
-//         ),
+        // InkWell(
+        //   onTap: widget.asd,
+        //   child: Container(
+        //     width: 100,
+        //     margin: EdgeInsets.symmetric(horizontal: 8),
+        //     child: Column(
+        //       children: [
+        //         ClipRRect(
+        //           borderRadius: BorderRadius.circular(12),
+        //           child: Image.asset(
+        //             widget.foods ?? "assets/images/default.png",
+        //             height: 80,
+        //             width: 110,
+        //             fit: BoxFit.cover,
+        //           ),
+        //         ),
+        //         SizedBox(height: 5),
+        //         Text(
+        //           widget.namms ?? "",
+        //           overflow: TextOverflow.ellipsis,
+        //         )
+        //       ],
+        //     ),
+        //   ),
+        // ),
        ],
      );
    }

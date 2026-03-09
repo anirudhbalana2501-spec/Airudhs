@@ -38,6 +38,12 @@ class _DashboardState extends State<Dashboard> {
     "assets/images/download.jpg",
     "assets/images/download (1).jpg",
   ];
+  List<String> number = [
+    '4.5', '4.0' ,'3.5', '2.' , '2.5'
+  ];
+  
+   
+
   List<Map<String, dynamic>> shop = [
     {
       "shops": [
@@ -279,6 +285,7 @@ class _DashboardState extends State<Dashboard> {
     String pname,
     String image,
     String loc,
+    String numm, 
     List<Map<String, dynamic>> menuitem,
   ) {
     print("Single shop");
@@ -288,7 +295,9 @@ class _DashboardState extends State<Dashboard> {
           pname: pname,
           image: image,
           location: loc,
+          numm: numm,
           menuitem: menuitem,
+          
           // shop: ,
         ),
       ),
@@ -665,12 +674,13 @@ class _DashboardState extends State<Dashboard> {
                               image: shopimage[i],
                               pname: shopname[i],
                               location: shoploc[i],
-
+                               numm: number[i],
                               btn: () {
                                 SingleSho11(
                                   shopname[i],
                                   shopimage[i],
                                   shoploc[i],
+                                  number[i],
                                   //shop,
                                   menuitem,
                                 );

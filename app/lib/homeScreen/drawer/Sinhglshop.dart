@@ -1,4 +1,5 @@
 import 'package:app/homeScreen/drawer/Dashboard.dart';
+import 'package:app/homeScreen/drawer/colorrating.dart';
 import 'package:app/homeScreen/drawer/inform.dart';
 import 'package:app/homeScreen/drawer/three.dart';
 import 'package:flutter/material.dart';
@@ -10,8 +11,8 @@ class SingleShopScreen extends StatefulWidget {
   String? location;
   String? shop;
   String? name;
-  String? foods;
-  String? namms;
+  dynamic? numm;
+  
   List<Map<String, dynamic>>? menuitem;
   SingleShopScreen({
     super.key,
@@ -20,10 +21,7 @@ class SingleShopScreen extends StatefulWidget {
     this.location,
     this.menuitem,
     this.shop,
-    // this.name,
-    // this.foods,
-    // this.namms, required String imagee,
-
+    this.numm
   });
 
   @override
@@ -251,13 +249,13 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                 vertical: 4,
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.green,
+                                color: Colorrating.getRatingColor(widget.numm),
                                 borderRadius: BorderRadius.circular(6),
                               ),
                               child: Row(
                                 children: [
                                   Text(
-                                    "4.5",
+                                    widget.numm,
                                     style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 12,
