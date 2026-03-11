@@ -108,13 +108,13 @@ class _ShopComponentState extends State<ShopComponent> {
                           );
                         }
                       });
-                      await saveFavorites(); // ✅ Save karo
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => FavoriteScreen(),
-                        ),
-                      );
+                      // await saveFavorites(); // ✅ Save karo
+                      // Navigator.push(
+                      //   context,
+                      //   MaterialPageRoute(
+                      //     builder: (context) => FavoriteScreen(),
+                      //  ),
+                      //);
                     },
 
                     child: Container(

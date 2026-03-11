@@ -1,6 +1,7 @@
 //import 'dart:async';
 //import 'package:app/components/shop_component.dart';
 //import 'package:app/data/favorites_data.dart';
+import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/saver.dart';
 import 'package:app/homeScreen/drawer/shopcomponet.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,6 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-
   @override
   void initState() {
     super.initState();
@@ -27,7 +27,15 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Favorites"),
+        title: Row(
+          children: [
+            Text(
+              "Favorites",
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+            ),
+            Icon(Icons.favorite),
+          ],
+        ),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -38,18 +46,11 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Icon(
-                    Icons.favorite_border,
-                    size: 80,
-                    color: Colors.grey,
-                  ),
+                  Icon(Icons.favorite_border, size: 80, color: Colors.grey),
                   SizedBox(height: 10),
                   Text(
                     "Koi favorite nahi hai!",
-                    style: TextStyle(
-                      fontSize: 16,
-                      color: Colors.grey,
-                    ),
+                    style: TextStyle(fontSize: 16, color: Colors.grey),
                   ),
                 ],
               ),
@@ -63,7 +64,19 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   pname: favoriteShops[index]['pname'],
                   location: favoriteShops[index]['location'],
                   numm: favoriteShops[index]['numm'],
-                  btn: () {},
+                  btn: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => SingleShopScreen(
+                          image: favoriteShops[index]['image'],
+                          pname: favoriteShops[index]['pname'],
+                          location: favoriteShops[index]['location'],
+                          numm: favoriteShops[index]['numm'],
+                        ),
+                      ),
+                    );
+                  },
                 );
               },
             ),

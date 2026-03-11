@@ -1,8 +1,11 @@
 import 'package:app/homeScreen/drawer/Dashboard.dart';
+import 'package:app/homeScreen/drawer/cart.dart';
+import 'package:app/homeScreen/drawer/cart_data.dart';
 import 'package:app/homeScreen/drawer/colorrating.dart';
 import 'package:app/homeScreen/drawer/inform.dart';
 import 'package:app/homeScreen/drawer/three.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 // ignore: must_be_immutable
 class SingleShopScreen extends StatefulWidget {
@@ -12,7 +15,7 @@ class SingleShopScreen extends StatefulWidget {
   String? shop;
   String? name;
   dynamic? numm;
-  
+
   List<Map<String, dynamic>>? menuitem;
   SingleShopScreen({
     super.key,
@@ -21,7 +24,7 @@ class SingleShopScreen extends StatefulWidget {
     this.location,
     this.menuitem,
     this.shop,
-    this.numm
+    this.numm,
   });
 
   @override
@@ -30,6 +33,17 @@ class SingleShopScreen extends StatefulWidget {
 
 class _SingleShopScreenState extends State<SingleShopScreen> {
   bool isVisible = true;
+
+  void call() async {
+    var phone = Uri.parse("tel://8107880487");
+    if (await canLaunchUrl(phone)) {
+      await launchUrl(phone);
+    } else {
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text("Call nahi ho sakta!")));
+    }
+  }
 
   // call() {
   //   UrlLauncher.launch("tel://9784837939");
@@ -107,6 +121,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
 
   bool isManuOpen = false;
   bool isThaliOpen = false;
+  Map<int, int> itemCount = {};
 
   // ignore: non_constant_identifier_names
   List<String> Thali = [
@@ -129,6 +144,125 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
     "tadka daal",
   ];
 
+  Widget addButton(int index, String name, String image, int price) {
+    int count = itemCount[index] ?? 0;
+    return count == 0
+        ? GestureDetector(
+            onTap: () => addToCart(index, name, image, price),
+            //  {
+            //   setState(() {
+            //     itemCount[index] = 1;
+            //   });
+            // },
+            child: Container(
+              padding: EdgeInsets.symmetric(horizontal: 30, vertical: 10),
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(12),
+                gradient: LinearGradient(
+                  colors: [Colors.green, Colors.lightGreen],
+                ),
+              ),
+              child: Row(
+                children: [
+                  Text(
+                    "ADD",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(width: 5),
+                  Icon(Icons.add, color: Colors.white, size: 18),
+                ],
+              ),
+            ),
+          )
+        : Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(12),
+              gradient: LinearGradient(
+                colors: [Colors.green, Colors.lightGreen],
+              ),
+            ),
+            child: Row(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                GestureDetector(
+                  onTap: () => removeFromCart(index) ,
+                  // {
+                  //   setState(() {
+                  //     if (itemCount[index]! > 1) {
+                  //       itemCount[index] = itemCount[index]! - 1;
+                  //     } else {
+                  //       itemCount.remove(index);
+                  //     }
+                  //   });
+                  // },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Icon(Icons.remove, color: Colors.white, size: 18),
+                  ),
+                ),
+                Text(
+                  "${itemCount[index]}",
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => addToCart(index, name, image, price),
+                  // {
+                  //   setState(() {
+                  //     itemCount[index] = itemCount[index]! + 1;
+                  //   });
+                  // },
+                  child: Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Icon(Icons.add, color: Colors.white, size: 18),
+                  ),
+                ),
+              ],
+            ),
+          );
+  }
+
+  void addToCart(int index, String name, String image, int price) {
+    setState(() {
+      // itemCount update karo
+      itemCount[index] = (itemCount[index] ?? 0) + 1;
+
+      // Cart mein check karo
+      int existing = cartItems.indexWhere((item) => item.index == index);
+      if (existing != -1) {
+        cartItems[existing].quantity++; // ✅ already hai toh quantity badha
+      } else {
+        cartItems.add(
+          CartItem(
+            // ✅ naya add karo
+            index: index,
+            name: name,
+            image: image,
+            price: price,
+          ),
+        );
+      }
+    });
+  }
+
+  void removeFromCart(int index) {
+    setState(() {
+      if (itemCount[index] != null && itemCount[index]! > 1) {
+        itemCount[index] = itemCount[index]! - 1;
+        int existing = cartItems.indexWhere((item) => item.index == index);
+        if (existing != -1) cartItems[existing].quantity--;
+      } else {
+        itemCount.remove(index);
+        cartItems.removeWhere((item) => item.index == index);
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     var menuitem1 = (widget.menuitem);
@@ -143,6 +277,39 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
       //appBar: AppBar(
       // title: Text("${widget.pname}"),
       //),
+      bottomSheet: cartItems.isEmpty
+          ? null
+          : Container(
+              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+              color: Colors.green,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "${cartItems.fold(0, (sum, item) => sum + item.quantity)} items | ₹${cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity))}",
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Cart()),
+                      );
+                    },
+                    child: Text(
+                      "View Cart →",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
       body: SingleChildScrollView(
         child: Column(
           children: [
@@ -338,7 +505,22 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                 ),
                                 borderRadius: BorderRadius.circular(20),
                               ),
-                              child: Icon(Icons.call, color: Colors.green),
+                              child: GestureDetector(
+                                onTap: call,
+                                child: Container(
+                                  height: 45,
+                                  width: 39,
+                                  decoration: BoxDecoration(
+                                    color: Colors.white,
+                                    border: Border.all(
+                                      width: 1,
+                                      color: Colors.green,
+                                    ),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Icon(Icons.call, color: Colors.green),
+                                ),
+                              ),
                             ),
                             SizedBox(height: 15),
                           ],
@@ -601,7 +783,6 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
 
                                                 SizedBox(width: 10),
 
-                                                /// RIGHT SIDE IMAGE + BUTTON
                                                 Column(
                                                   children: [
                                                     ClipRRect(
@@ -619,48 +800,11 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
 
                                                     SizedBox(height: 10),
 
-                                                    /// ADD BUTTON (2 COLOR)
-                                                    Container(
-                                                      padding:
-                                                          EdgeInsets.symmetric(
-                                                            horizontal: 30,
-                                                            vertical: 10,
-                                                          ),
-                                                      decoration: BoxDecoration(
-                                                        borderRadius:
-                                                            BorderRadius.circular(
-                                                              12,
-                                                            ),
-
-                                                        gradient:
-                                                            LinearGradient(
-                                                              colors: [
-                                                                Colors.green,
-                                                                Colors
-                                                                    .lightGreen,
-                                                              ],
-                                                            ),
-                                                      ),
-                                                      child: Row(
-                                                        children: [
-                                                          Text(
-                                                            "ADD",
-                                                            style: TextStyle(
-                                                              color:
-                                                                  Colors.white,
-                                                              fontWeight:
-                                                                  FontWeight
-                                                                      .bold,
-                                                            ),
-                                                          ),
-                                                          SizedBox(width: 5),
-                                                          Icon(
-                                                            Icons.add,
-                                                            color: Colors.white,
-                                                            size: 18,
-                                                          ),
-                                                        ],
-                                                      ),
+                                                    addButton(
+                                                      0,
+                                                      "Paneer Butter Masala",
+                                                      "assets/images/manu/thali/istockphoto-1458973879-2048x2048.jpg",
+                                                      169,
                                                     ),
                                                   ],
                                                 ),
@@ -795,54 +939,11 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                                             SizedBox(
                                                               height: 10,
                                                             ),
-
-                                                            /// ADD BUTTON (2 COLOR)
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets.symmetric(
-                                                                    horizontal:
-                                                                        30,
-                                                                    vertical:
-                                                                        10,
-                                                                  ),
-                                                              decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                      12,
-                                                                    ),
-
-                                                                gradient: LinearGradient(
-                                                                  colors: [
-                                                                    Colors
-                                                                        .green,
-                                                                    Colors
-                                                                        .lightGreen,
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    "ADD",
-                                                                    style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 5,
-                                                                  ),
-                                                                  Icon(
-                                                                    Icons.add,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 18,
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            addButton(
+                                                              1,
+                                                              "Paneer Butter Masala 2",
+                                                              "assets/images/manu/thali/istockphoto-803757626-612x612.jpg",
+                                                              169,
                                                             ),
                                                           ],
                                                         ),
@@ -983,53 +1084,11 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                                                               height: 10,
                                                             ),
 
-                                                            /// ADD BUTTON (2 COLOR)
-                                                            Container(
-                                                              padding:
-                                                                  EdgeInsets.symmetric(
-                                                                    horizontal:
-                                                                        30,
-                                                                    vertical:
-                                                                        10,
-                                                                  ),
-                                                              decoration: BoxDecoration(
-                                                                borderRadius:
-                                                                    BorderRadius.circular(
-                                                                      12,
-                                                                    ),
-
-                                                                gradient: LinearGradient(
-                                                                  colors: [
-                                                                    Colors
-                                                                        .green,
-                                                                    Colors
-                                                                        .lightGreen,
-                                                                  ],
-                                                                ),
-                                                              ),
-                                                              child: Row(
-                                                                children: [
-                                                                  Text(
-                                                                    "ADD",
-                                                                    style: TextStyle(
-                                                                      color: Colors
-                                                                          .white,
-                                                                      fontWeight:
-                                                                          FontWeight
-                                                                              .bold,
-                                                                    ),
-                                                                  ),
-                                                                  SizedBox(
-                                                                    width: 5,
-                                                                  ),
-                                                                  Icon(
-                                                                    Icons.add,
-                                                                    color: Colors
-                                                                        .white,
-                                                                    size: 18,
-                                                                  ),
-                                                                ],
-                                                              ),
+                                                            addButton(
+                                                              2,
+                                                              "Paneer Butter Masala 3",
+                                                              "assets/images/manu/thali/5f19d2a017c3176f018adef73dc96e5d.avif",
+                                                              169,
                                                             ),
                                                           ],
                                                         ),

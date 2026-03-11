@@ -1,5 +1,6 @@
 import 'package:app/homeScreen/drawer/Hader.dart';
 import 'package:app/homeScreen/drawer/Dashboard.dart';
+import 'package:app/homeScreen/drawer/favorite.dart';
 import 'package:app/homeScreen/drawer/logout.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -17,6 +18,15 @@ enum DrawerSection { Dashboard, Logout }
 
 class _HomescreenState extends State<Homescreen> {
   var currentpage = DrawerSection.Dashboard;
+  // ignore: unused_field, prefer_final_fields
+  int _selectedIndex = 0;
+
+  // ignore: unused_field
+  // final List<Widget> _screens = [
+  //   Dashboard(), // index 0
+  //   FavoriteScreen(), // index 1
+  //   // aur screens...
+  // ];
 
   Widget ListData() {
     return Container(
@@ -115,10 +125,28 @@ class _HomescreenState extends State<Homescreen> {
   @override
   Widget build(BuildContext context) {
     var container;
-    if (currentpage == DrawerSection.Dashboard) {
+    //Widget container;
+    if (_selectedIndex == 0) {
       container = Dashboard();
-    } else if (currentpage == DrawerSection.Logout) {
+    } else if (_selectedIndex == 1) {
+      container = FavoriteScreen();
+    }
+    // else if (_selectedIndex == 2) {
+    //   container = Dashboard(); // apni screen lagao
+    //}
+    //else if (_selectedIndex == 3) {
+    //container = Dashboard(); // apni screen lagao
+    //}
+    //else {
+    // container = Dashboard(); // apni screen lagao
+    // }
+    // if (currentpage == DrawerSection.Dashboard) {
+    //   container = Dashboard();
+    // }
+    else if (currentpage == DrawerSection.Logout) {
       container = Logout();
+    } else {
+      container = Dashboard();
     }
 
     return SafeArea(
@@ -142,12 +170,32 @@ class _HomescreenState extends State<Homescreen> {
         body: container,
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
+          selectedItemColor: Colors.green, // ✅ selected icon ka color
+          unselectedItemColor: Colors.black,
+          showSelectedLabels: true,
+          showUnselectedLabels: false,
+          selectedLabelStyle: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontSize: 12,
+          ),
+          currentIndex: _selectedIndex,
+          onTap: (index) {
+            setState(() {
+              _selectedIndex = index;
+            });
+            // if (index == 1) {
+            //   Navigator.push(
+            //     context,
+            //     MaterialPageRoute(builder: (context) => FavoriteScreen()),
+            //   );
+            // }
+          },
           iconSize: 30,
           selectedFontSize: 10,
-          unselectedFontSize: 12,
+          unselectedFontSize: 8,
           items: [
             BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.home_filled), label: ""),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.video_library), label: ""),
             BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
             BottomNavigationBarItem(
