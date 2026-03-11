@@ -279,37 +279,40 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
       //),
       bottomSheet: cartItems.isEmpty
           ? null
-          : Container(
-              padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
-              color: Colors.green,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "${cartItems.fold(0, (sum, item) => sum + item.quantity)} items | ₹${cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity))}",
-                    style: TextStyle(
-                      color: Colors.white,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => Cart()),
-                      );
-                    },
-                    child: Text(
-                      "View Cart →",
+          : Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12, ),
+                color: Colors.green,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "${cartItems.fold(0, (sum, item) => sum + item.quantity)} items | ₹${cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity))}",
                       style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                  ),
-                ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => Cart()),
+                        );
+                      },
+                      child: Text(
+                        "View Cart →",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            ),
+          ),
       body: SingleChildScrollView(
         child: Column(
           children: [

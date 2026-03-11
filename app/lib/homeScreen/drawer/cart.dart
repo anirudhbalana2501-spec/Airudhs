@@ -1,4 +1,3 @@
- 
 import 'package:app/homeScreen/drawer/cart_data.dart';
 import 'package:flutter/material.dart';
 
@@ -20,7 +19,7 @@ class _CartState extends State<Cart> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cart 🛒", style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text("Cart   🛒", style: TextStyle(fontWeight: FontWeight.bold)),
         backgroundColor: Colors.white,
         foregroundColor: Colors.black,
         elevation: 0,
@@ -163,106 +162,133 @@ class _CartState extends State<Cart> {
                 ),
 
                 // ✅ Total + Place Order - Column ke andar
-                Container(
-                  padding: EdgeInsets.all(16),
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    boxShadow: [
-                      BoxShadow(color: Colors.black12, blurRadius: 10),
-                    ],
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            "Total Items: $totalQuantity",
-                            style: TextStyle(fontSize: 15),
-                          ),
-                          Text(
-                            "Total: ₹$total",
-                            style: TextStyle(
-                              fontSize: 15,
-                              fontWeight: FontWeight.bold,
-                              color: Colors.green,
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 40),
+                  child: Container(
+                    padding: EdgeInsets.all(16),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(color: Colors.black12, blurRadius: 10),
+                      ],
+                    ),
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Total Items: $totalQuantity",
+                              style: TextStyle(fontSize: 15),
                             ),
-                          ),
-                        ],
-                      ),
-                      SizedBox(height: 10),
-                      GestureDetector(
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: Text("Order Summary 🧾"),
-                              content: Column(
-                                mainAxisSize: MainAxisSize.min,
-                                children: [
-                                  ...cartItems.map(
-                                    (item) => Row(
+                            Text(
+                              "Total: ₹$total",
+                              style: TextStyle(
+                                fontSize: 15,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.green,
+                              ),
+                            ),
+                          ],
+                        ),
+                        SizedBox(height: 10),
+                        GestureDetector(
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                title: Text("Order Summary 🧾"),
+                                content: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    ...cartItems.map(
+                                      (item) => Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text(
+                                            item.name,
+                                            style: TextStyle(fontSize: 13),
+                                          ),
+                                          Text(
+                                            "${item.quantity} x ₹${item.price} = ₹${item.quantity * item.price}",
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                    Divider(),
+                                    Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                          item.name,
-                                          style: TextStyle(fontSize: 13),
+                                          "Total",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                          ),
                                         ),
                                         Text(
-                                          "${item.quantity} x ₹${item.price} = ₹${item.quantity * item.price}",
+                                          "₹$total",
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            color: Colors.green,
+                                          ),
                                         ),
                                       ],
                                     ),
-                                  ),
-                                  Divider(),
-                                  Row(
-                                    mainAxisAlignment:
-                                        MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        "Total",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        "₹$total",
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          color: Colors.green,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: Text("Cancel"),
+                                  ],
                                 ),
-                                ElevatedButton(
-                                  style: ElevatedButton.styleFrom(
-                                    backgroundColor: Colors.green,
+                                actions: [
+                                  TextButton(
+                                    onPressed: () => Navigator.pop(context),
+                                    child: Text("Cancel"),
                                   ),
-                                  onPressed: () {
-                                    setState(() {
-                                      cartItems.clear();
-                                    });
-                                    Navigator.pop(context);
-                                    ScaffoldMessenger.of(context).showSnackBar(
-                                      SnackBar(
-                                        content: Text(
-                                          "Order place ho gaya! 🎉",
+                                  ElevatedButton(
+                                    style: ElevatedButton.styleFrom(
+                                      backgroundColor: Colors.green,
+                                    ),
+                                    onPressed: () {
+                                      setState(() {
+                                        cartItems.clear();
+                                      });
+                                      Navigator.pop(context);
+
+                                                   showDialog(
+                                      context: context,
+                                      barrierDismissible: false,
+                                      builder: (context) => AlertDialog(
+                                        content: Column(
+                                          mainAxisSize: MainAxisSize.min,
+                                          children: [
+                                            Icon(Icons.check_circle, color: Colors.green, size: 80),
+                                            SizedBox(height: 10),
+                                            Text(
+                                              "Order Place Ho Gaya! 🎉",
+                                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                            SizedBox(height: 5),
+                                            Text(
+                                              "Aapka order jald aa jayega!",
+                                              style: TextStyle(color: Colors.grey),
+                                              textAlign: TextAlign.center,
+                                            ),
+                                          ],
                                         ),
+                                        actions: [
+                                          ElevatedButton(
+                                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
+                                            onPressed: () {
+                                              Navigator.pop(context); // success dialog band
+                                              Navigator.pop(context); // cart screen band
+                                            },
+                                            child: Text("OK", style: TextStyle(color: Colors.white)),
+                                          ),
+                                        ],
                                       ),
                                     );
                                   },
-                                  child: Text(
-                                    "Place Order",
-                                    style: TextStyle(color: Colors.white),
-                                  ),
+                                  child: Text("Place Order", style: TextStyle(color: Colors.white)),
                                 ),
                               ],
                             ),
@@ -273,27 +299,81 @@ class _CartState extends State<Cart> {
                           padding: EdgeInsets.symmetric(vertical: 15),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(
-                              colors: [Colors.green, Colors.lightGreen],
-                            ),
+                            gradient: LinearGradient(colors: [Colors.green, Colors.lightGreen]),
                           ),
                           child: Center(
                             child: Text(
                               "Place Order 🛒",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16,
-                              ),
+                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ), // ✅ Container band
-              ], // ✅ Column children band
-            ), // ✅ Column band
+                ),
+           ) ],
+            )
+
+
+            //                           ScaffoldMessenger.of(
+            //                             context,
+            //                           ).showSnackBar(
+            //                             SnackBar(
+            //                               content: Text(
+            //                                 "Order place ho gaya! 🎉",
+            //                               ),
+            //                             ),
+            //                           );
+            //                         },
+            //                         child: Text(
+            //                           "Place Order",
+            //                           style: TextStyle(color: Colors.white),
+            //                         ),
+            //                       ),
+            //                     ],
+            //                   ),
+            //                 );
+            //               },
+            //               child: Container(
+            //                 width: double.infinity,
+            //                 padding: EdgeInsets.symmetric(vertical: 15),
+            //                 decoration: BoxDecoration(
+            //                   borderRadius: BorderRadius.circular(12),
+            //                   gradient: LinearGradient(
+            //                     colors: [Colors.green, Colors.lightGreen],
+            //                   ),
+            //                 ),
+            //                 child: Center(
+            //                   child: Padding(
+            //                     padding: const EdgeInsets.only(left: 120),
+            //                     child: Row(
+            //                       children: [
+            //                         Text(
+            //                           "Place Order ",
+            //                           style: TextStyle(
+            //                             color: Colors.white,
+            //                             fontWeight: FontWeight.bold,
+            //                             fontSize: 16,
+            //                           ),
+            //                         ),
+            //                         CircleAvatar(
+            //                           radius: 15,
+            //                           backgroundColor: Colors.white,
+            //                           child: Text("🛒"),
+            //                         ),
+            //                       ],
+            //                     ),
+            //                   ),
+            //                 ),
+            //               ),
+            //             ),
+            //           ],
+            //         ),
+            //       ),
+            //     ),
+            //   ],
+            // ),
     );
   }
 }
