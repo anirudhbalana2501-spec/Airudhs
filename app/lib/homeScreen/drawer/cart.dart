@@ -2,7 +2,8 @@ import 'package:app/homeScreen/drawer/cart_data.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
-  const Cart({super.key});
+   final VoidCallback? onOrderPlaced;
+  const Cart({super.key, this.onOrderPlaced});
 
   @override
   State<Cart> createState() => _CartState();
@@ -247,133 +248,174 @@ class _CartState extends State<Cart> {
                                     style: ElevatedButton.styleFrom(
                                       backgroundColor: Colors.green,
                                     ),
-                                    onPressed: () {
+                                    onPressed: () async {
+                                      orderHistory.add(
+                                        OrderHistory(
+                                          items: List.from(
+                                            cartItems,
+                                          ), 
+                                          total: total,
+                                          date: DateTime.now(),
+                                        ),
+                                      );
+                                      await saveOrderHistory();
+                                       print("History saved! Total orders: ${orderHistory.length}"); 
                                       setState(() {
                                         cartItems.clear();
                                       });
                                       Navigator.pop(context);
 
-                                                   showDialog(
-                                      context: context,
-                                      barrierDismissible: false,
-                                      builder: (context) => AlertDialog(
-                                        content: Column(
-                                          mainAxisSize: MainAxisSize.min,
-                                          children: [
-                                            Icon(Icons.check_circle, color: Colors.green, size: 80),
-                                            SizedBox(height: 10),
-                                            Text(
-                                              "Order Place Ho Gaya! 🎉",
-                                              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                                              textAlign: TextAlign.center,
-                                            ),
-                                            SizedBox(height: 5),
-                                            Text(
-                                              "Aapka order jald aa jayega!",
-                                              style: TextStyle(color: Colors.grey),
-                                              textAlign: TextAlign.center,
+                                      showDialog(
+                                        context: context,
+                                        barrierDismissible: false,
+                                        builder: (context) => AlertDialog(
+                                          content: Column(
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Icon(
+                                                Icons.check_circle,
+                                                color: Colors.green,
+                                                size: 80,
+                                              ),
+                                              SizedBox(height: 10),
+                                              Text(
+                                                "Order Place Ho Gaya! 🎉",
+                                                style: TextStyle(
+                                                  fontSize: 18,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                              SizedBox(height: 5),
+                                              Text(
+                                                "Aapka order jald aa jayega!",
+                                                style: TextStyle(
+                                                  color: Colors.grey,
+                                                ),
+                                                textAlign: TextAlign.center,
+                                              ),
+                                            ],
+                                          ),
+                                          actions: [
+                                            ElevatedButton(
+                                              style: ElevatedButton.styleFrom(
+                                                backgroundColor: Colors.green,
+                                              ),
+                                              onPressed: () {
+                                                Navigator.pop(
+                                                  context,
+                                                ); 
+                                                Navigator.pop(
+                                                  context,
+                                                ); 
+                                                 widget.onOrderPlaced?.call();
+                                              },
+                                              child: Text(
+                                                "OK",
+                                                style: TextStyle(
+                                                  color: Colors.white,
+                                                ),
+                                              ),
                                             ),
                                           ],
                                         ),
-                                        actions: [
-                                          ElevatedButton(
-                                            style: ElevatedButton.styleFrom(backgroundColor: Colors.green),
-                                            onPressed: () {
-                                              Navigator.pop(context); // success dialog band
-                                              Navigator.pop(context); // cart screen band
-                                            },
-                                            child: Text("OK", style: TextStyle(color: Colors.white)),
-                                          ),
-                                        ],
-                                      ),
-                                    );
-                                  },
-                                  child: Text("Place Order", style: TextStyle(color: Colors.white)),
-                                ),
-                              ],
+                                      );
+                                    },
+                                    child: Text(
+                                      "Place Order",
+                                      style: TextStyle(color: Colors.white),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            );
+                          },
+                          child: Container(
+                            width: double.infinity,
+                            padding: EdgeInsets.symmetric(vertical: 15),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(12),
+                              gradient: LinearGradient(
+                                colors: [Colors.green, Colors.lightGreen],
+                              ),
                             ),
-                          );
-                        },
-                        child: Container(
-                          width: double.infinity,
-                          padding: EdgeInsets.symmetric(vertical: 15),
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(12),
-                            gradient: LinearGradient(colors: [Colors.green, Colors.lightGreen]),
-                          ),
-                          child: Center(
-                            child: Text(
-                              "Place Order 🛒",
-                              style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16),
+                            child: Center(
+                              child: Text(
+                                "Place Order 🛒",
+                                style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
-           ) ],
-            )
+              ],
+            ),
 
-
-            //                           ScaffoldMessenger.of(
-            //                             context,
-            //                           ).showSnackBar(
-            //                             SnackBar(
-            //                               content: Text(
-            //                                 "Order place ho gaya! 🎉",
-            //                               ),
-            //                             ),
-            //                           );
-            //                         },
-            //                         child: Text(
-            //                           "Place Order",
-            //                           style: TextStyle(color: Colors.white),
-            //                         ),
-            //                       ),
-            //                     ],
-            //                   ),
-            //                 );
-            //               },
-            //               child: Container(
-            //                 width: double.infinity,
-            //                 padding: EdgeInsets.symmetric(vertical: 15),
-            //                 decoration: BoxDecoration(
-            //                   borderRadius: BorderRadius.circular(12),
-            //                   gradient: LinearGradient(
-            //                     colors: [Colors.green, Colors.lightGreen],
-            //                   ),
-            //                 ),
-            //                 child: Center(
-            //                   child: Padding(
-            //                     padding: const EdgeInsets.only(left: 120),
-            //                     child: Row(
-            //                       children: [
-            //                         Text(
-            //                           "Place Order ",
-            //                           style: TextStyle(
-            //                             color: Colors.white,
-            //                             fontWeight: FontWeight.bold,
-            //                             fontSize: 16,
-            //                           ),
-            //                         ),
-            //                         CircleAvatar(
-            //                           radius: 15,
-            //                           backgroundColor: Colors.white,
-            //                           child: Text("🛒"),
-            //                         ),
-            //                       ],
-            //                     ),
-            //                   ),
-            //                 ),
-            //               ),
-            //             ),
-            //           ],
-            //         ),
-            //       ),
-            //     ),
-            //   ],
-            // ),
+      //                           ScaffoldMessenger.of(
+      //                             context,
+      //                           ).showSnackBar(
+      //                             SnackBar(
+      //                               content: Text(
+      //                                 "Order place ho gaya! 🎉",
+      //                               ),
+      //                             ),
+      //                           );
+      //                         },
+      //                         child: Text(
+      //                           "Place Order",
+      //                           style: TextStyle(color: Colors.white),
+      //                         ),
+      //                       ),
+      //                     ],
+      //                   ),
+      //                 );
+      //               },
+      //               child: Container(
+      //                 width: double.infinity,
+      //                 padding: EdgeInsets.symmetric(vertical: 15),
+      //                 decoration: BoxDecoration(
+      //                   borderRadius: BorderRadius.circular(12),
+      //                   gradient: LinearGradient(
+      //                     colors: [Colors.green, Colors.lightGreen],
+      //                   ),
+      //                 ),
+      //                 child: Center(
+      //                   child: Padding(
+      //                     padding: const EdgeInsets.only(left: 120),
+      //                     child: Row(
+      //                       children: [
+      //                         Text(
+      //                           "Place Order ",
+      //                           style: TextStyle(
+      //                             color: Colors.white,
+      //                             fontWeight: FontWeight.bold,
+      //                             fontSize: 16,
+      //                           ),
+      //                         ),
+      //                         CircleAvatar(
+      //                           radius: 15,
+      //                           backgroundColor: Colors.white,
+      //                           child: Text("🛒"),
+      //                         ),
+      //                       ],
+      //                     ),
+      //                   ),
+      //                 ),
+      //               ),
+      //             ),
+      //           ],
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
     );
   }
 }

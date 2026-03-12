@@ -2,6 +2,7 @@ import 'package:app/homeScreen/drawer/Hader.dart';
 import 'package:app/homeScreen/drawer/Dashboard.dart';
 import 'package:app/homeScreen/drawer/favorite.dart';
 import 'package:app/homeScreen/drawer/logout.dart';
+import 'package:app/homeScreen/drawer/orderhitory.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -130,7 +131,9 @@ class _HomescreenState extends State<Homescreen> {
       container = Dashboard();
     } else if (_selectedIndex == 1) {
       container = FavoriteScreen();
-    }
+    } else if (_selectedIndex == 2) {
+  container = OrderHistoryScreen(); 
+}
     // else if (_selectedIndex == 2) {
     //   container = Dashboard(); // apni screen lagao
     //}
@@ -194,14 +197,14 @@ class _HomescreenState extends State<Homescreen> {
           selectedFontSize: 10,
           unselectedFontSize: 8,
           items: [
-            BottomNavigationBarItem(icon: Icon(Icons.home), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.favorite), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.video_library), label: ""),
-            BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.person_rounded),
-              label: "",
-            ),
+            BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+            BottomNavigationBarItem(icon: Icon(Icons.favorite), label: "Favorite"),
+            BottomNavigationBarItem(icon: Icon(Icons.history), label: "History"),
+            // BottomNavigationBarItem(icon: Icon(Icons.shopping_cart), label: ""),
+            // BottomNavigationBarItem(
+            //   icon: Icon(Icons.person_rounded),
+            //   label: "",
+            // ),
           ],
         ),
 

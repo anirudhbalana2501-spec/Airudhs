@@ -119,8 +119,8 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
     print("Gallery");
   }
 
-  bool isManuOpen = false;
-  bool isThaliOpen = false;
+  bool isManuOpen = true;
+  bool isThaliOpen = true;
   Map<int, int> itemCount = {};
 
   // ignore: non_constant_identifier_names
@@ -188,7 +188,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
               mainAxisSize: MainAxisSize.min,
               children: [
                 GestureDetector(
-                  onTap: () => removeFromCart(index) ,
+                  onTap: () => removeFromCart(index),
                   // {
                   //   setState(() {
                   //     if (itemCount[index]! > 1) {
@@ -280,9 +280,9 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
       bottomSheet: cartItems.isEmpty
           ? null
           : Padding(
-            padding: const EdgeInsets.only(bottom: 50),
-            child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12, ),
+              padding: const EdgeInsets.only(bottom: 50),
+              child: Container(
+                padding: EdgeInsets.symmetric(horizontal: 20, vertical: 12),
                 color: Colors.green,
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -298,7 +298,16 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => Cart()),
+                          MaterialPageRoute(
+                            builder: (context) => Cart(
+                              onOrderPlaced: () {
+                                // ✅ itemCount clear karo
+                                setState(() {
+                                  itemCount.clear();
+                                });
+                              },
+                            ),
+                          ),
                         );
                       },
                       child: Text(
@@ -312,7 +321,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
                   ],
                 ),
               ),
-          ),
+            ),
       body: SingleChildScrollView(
         child: Column(
           children: [
