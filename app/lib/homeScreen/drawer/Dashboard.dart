@@ -1,5 +1,7 @@
 //import 'dart:nativewrappers/_internal/vm/bin/vmservice_io.dart';
 
+import 'package:app/homeScreen/drawer/location.dart';
+import 'package:app/homeScreen/drawer/location2.dart';
 import 'package:app/homeScreen/drawer/shopcomponet.dart';
 import 'package:app/homeScreen/drawer/Sinhglshop.dart';
 import 'package:app/homeScreen/drawer/profilepage.dart';
@@ -38,11 +40,7 @@ class _DashboardState extends State<Dashboard> {
     "assets/images/download.jpg",
     "assets/images/download (1).jpg",
   ];
-  List<String> number = [
-    '4.5', '4.0' ,'3.5', '2.' , '2.5'
-  ];
-  
-   
+  List<String> number = ['4.5', '4.0', '3.5', '2.', '2.5'];
 
   List<Map<String, dynamic>> shop = [
     {
@@ -280,12 +278,18 @@ class _DashboardState extends State<Dashboard> {
   //   },
   // ];
 
+  @override
+  void initState() {
+    super.initState();
+    getCurrentLocation(); // ✅ app khulte hi location lo
+  }
+
   // ignore: non_constant_identifier_names
   SingleSho11(
     String pname,
     String image,
     String loc,
-    String numm, 
+    String numm,
     List<Map<String, dynamic>> menuitem,
   ) {
     print("Single shop");
@@ -297,14 +301,20 @@ class _DashboardState extends State<Dashboard> {
           location: loc,
           numm: numm,
           menuitem: menuitem,
-          
+
           // shop: ,
         ),
       ),
     );
   }
 
-  allitess(String iimage, String name, String pname, String location) {
+  allitess(
+    String iimage,
+    String name,
+    String pname,
+    String location,
+    String numm,
+  ) {
     print("object");
     Navigator.of(context).push(
       MaterialPageRoute(
@@ -312,7 +322,8 @@ class _DashboardState extends State<Dashboard> {
           image: iimage,
           pname: pname,
           location: location,
-         // name: name,
+          name: name,
+          numm: numm,
         ),
       ),
     );
@@ -327,19 +338,19 @@ class _DashboardState extends State<Dashboard> {
     String namms,
   ) {
     print("object");
-  //   Navigator.of(context).push(
-  //     MaterialPageRoute(
-  //       builder: (context) => SingleShopScreen(
-  //         image: iimage,
-  //         pname: pname,
-  //         location: location,
-  //         name: name,
-  //         foods: foods,
-  //         namms: namms,
-  //       ),
-  //     ),
-  //   );
-   }
+    //   Navigator.of(context).push(
+    //     MaterialPageRoute(
+    //       builder: (context) => SingleShopScreen(
+    //         image: iimage,
+    //         pname: pname,
+    //         location: location,
+    //         name: name,
+    //         foods: foods,
+    //         namms: namms,
+    //       ),
+    //     ),
+    //   );
+  }
 
   allmenuite() {
     Navigator.of(
@@ -359,6 +370,10 @@ class _DashboardState extends State<Dashboard> {
       context,
       MaterialPageRoute(builder: (context) => ProfilePage()),
     );
+  }
+
+  void loc(){
+    Navigator.push(context, MaterialPageRoute(builder: (context) => Location2()));
   }
 
   // allshop() { //--
@@ -504,13 +519,20 @@ class _DashboardState extends State<Dashboard> {
                       padding: const EdgeInsets.only(bottom: 50),
                       child: Row(
                         children: [
-                          Icon(Icons.location_on, size: 30, color: Colors.red),
-                          Text(
-                            "Royal Plaza\nAmrpali....",
-                            style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.red,
-                              fontWeight: FontWeight.bold,
+                          GestureDetector(
+                            onTap: loc,
+                            child: Row(
+                              children: [
+                                Icon(Icons.location_on, size: 30, color: Colors.red),
+                                Text(
+                                  "Royal Plaza\nAmrpali....",
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    color: Colors.red,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
                           SizedBox(height: 20),
@@ -585,6 +607,7 @@ class _DashboardState extends State<Dashboard> {
                                     allfood[a],
                                     shopname[a],
                                     shoploc[a],
+                                    number[a],
                                   );
                                 },
                               ),
@@ -674,7 +697,7 @@ class _DashboardState extends State<Dashboard> {
                               image: shopimage[i],
                               pname: shopname[i],
                               location: shoploc[i],
-                               numm: number[i],
+                              numm: number[i],
                               btn: () {
                                 SingleSho11(
                                   shopname[i],

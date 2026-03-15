@@ -10,6 +10,7 @@ class CartItem {
   final String image;
   final int price;
   int quantity;
+  
 
   CartItem({
     required this.index,
@@ -17,6 +18,7 @@ class CartItem {
     required this.image,
     required this.price,
     this.quantity = 1,
+    
   });
 
   // ✅ toJson add karo
@@ -46,11 +48,13 @@ class OrderHistory {
   final List<CartItem> items;
   final int total;
   final DateTime date;
+  bool isCancelled;
 
   OrderHistory({
     required this.items,
     required this.total,
     required this.date,
+     this.isCancelled = false,
   });
 
   Map<String, dynamic> toJson() {
@@ -61,13 +65,24 @@ class OrderHistory {
     };
   }
 
-  factory OrderHistory.fromJson(Map<String, dynamic> json) {
+   factory OrderHistory.fromJson(Map<String, dynamic> json) {
     return OrderHistory(
-      items: (json['items'] as List).map((item) => CartItem.fromJson(item)).toList(),
+      items: (json['items'] as List)
+          .map((e) => CartItem.fromJson(e))
+          .toList(),
       total: json['total'],
       date: DateTime.parse(json['date']),
+      isCancelled: json['isCancelled'] ?? false,
     );
   }
+
+  // factory OrderHistory.fromJson(Map<String, dynamic> json) {
+  //   return OrderHistory(
+  //     items: (json['items'] as List).map((item) => CartItem.fromJson(item)).toList(),
+  //     total: json['total'],
+  //     date: DateTime.parse(json['date']),
+  //   );
+  // }
 }
 
 // ✅ Sirf ek baar declare karo

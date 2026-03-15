@@ -1,5 +1,6 @@
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
 import 'package:app/homeScreen/drawer/cart_data.dart';
+import 'package:app/homeScreen/drawer/location.dart';
 import 'package:app/homeScreen/drawer/logine.dart';
 //import 'package:app/homeScreen/drawer/loginhome.dart';
 import 'package:app/homeScreen/drawer/saver.dart';
@@ -11,6 +12,7 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await loadFavorites(); 
   await loadOrderHistory();
+   await loadSavedLocation(); 
   runApp( MyApp());
 }
 

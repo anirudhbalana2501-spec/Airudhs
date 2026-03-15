@@ -1,8 +1,9 @@
 import 'package:app/homeScreen/drawer/cart_data.dart';
+import 'package:app/homeScreen/drawer/ordertriking.dart';
 import 'package:flutter/material.dart';
 
 class Cart extends StatefulWidget {
-   final VoidCallback? onOrderPlaced;
+  final VoidCallback? onOrderPlaced;
   const Cart({super.key, this.onOrderPlaced});
 
   @override
@@ -251,15 +252,15 @@ class _CartState extends State<Cart> {
                                     onPressed: () async {
                                       orderHistory.add(
                                         OrderHistory(
-                                          items: List.from(
-                                            cartItems,
-                                          ), 
+                                          items: List.from(cartItems),
                                           total: total,
                                           date: DateTime.now(),
                                         ),
                                       );
                                       await saveOrderHistory();
-                                       print("History saved! Total orders: ${orderHistory.length}"); 
+                                      print(
+                                        "History saved! Total orders: ${orderHistory.length}",
+                                      );
                                       setState(() {
                                         cartItems.clear();
                                       });
@@ -302,14 +303,22 @@ class _CartState extends State<Cart> {
                                                 backgroundColor: Colors.green,
                                               ),
                                               onPressed: () {
-                                                Navigator.pop(
+                                                Navigator.pop(context);
+                                                Navigator.pop(context);
+                                                widget.onOrderPlaced?.call();
+
+                                                Navigator.push(
                                                   context,
-                                                ); 
-                                                Navigator.pop(
-                                                  context,
-                                                ); 
-                                                 widget.onOrderPlaced?.call();
+                                                  MaterialPageRoute(
+                                                    builder: (context) =>
+                                                        OrderTrackingScreen(
+                                                          order: orderHistory
+                                                              .last, // ✅ latest order
+                                                        ),
+                                                  ),
+                                                );
                                               },
+
                                               child: Text(
                                                 "OK",
                                                 style: TextStyle(

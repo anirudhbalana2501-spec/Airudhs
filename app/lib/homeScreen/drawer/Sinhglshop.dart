@@ -25,6 +25,7 @@ class SingleShopScreen extends StatefulWidget {
     this.menuitem,
     this.shop,
     this.numm,
+    this.name
   });
 
   @override
