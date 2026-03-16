@@ -372,8 +372,11 @@ class _DashboardState extends State<Dashboard> {
     );
   }
 
-  void loc(){
-    Navigator.push(context, MaterialPageRoute(builder: (context) => Location2()));
+  void loc() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => Location2()),
+    );
   }
 
   // allshop() { //--
@@ -520,10 +523,24 @@ class _DashboardState extends State<Dashboard> {
                       child: Row(
                         children: [
                           GestureDetector(
-                            onTap: loc,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Location2(),
+                                ),
+                              ).then((_) {
+                                setState(() {});
+                              });
+                            },
+
                             child: Row(
                               children: [
-                                Icon(Icons.location_on, size: 30, color: Colors.red),
+                                Icon(
+                                  Icons.location_on,
+                                  size: 30,
+                                  color: Colors.red,
+                                ),
                                 Text(
                                   "Royal Plaza\nAmrpali....",
                                   style: TextStyle(

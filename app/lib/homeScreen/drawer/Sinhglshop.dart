@@ -36,7 +36,7 @@ class _SingleShopScreenState extends State<SingleShopScreen> {
   bool isVisible = true;
 
   void call() async {
-    var phone = Uri.parse("tel://8107880487");
+    var phone = Uri.parse("tel://9950359373");
     if (await canLaunchUrl(phone)) {
       await launchUrl(phone);
     } else {

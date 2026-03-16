@@ -1,4 +1,5 @@
 import 'package:app/homeScreen/drawer/Splashscreen.dart';
+import 'package:app/homeScreen/drawer/addressselected.dart';
 import 'package:app/homeScreen/drawer/cart_data.dart';
 import 'package:app/homeScreen/drawer/location.dart';
 import 'package:app/homeScreen/drawer/logine.dart';
@@ -10,10 +11,11 @@ import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await loadFavorites(); 
+  await loadFavorites();
   await loadOrderHistory();
-   await loadSavedLocation(); 
-  runApp( MyApp());
+  await loadSavedLocation();
+  await loadSelectedAddress();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -46,10 +48,9 @@ class MyApp extends StatelessWidget {
       initialRoute: "/",
 
       routes: {
-        "/" : (context) => Splashscreen(),
+        "/": (context) => Splashscreen(),
         "/login": (context) => Logine(),
-        "/home" : (context)=> Homescreen(name: "name", password: "password"),
-        
+        "/home": (context) => Homescreen(name: "name", password: "password"),
       },
 
       // home: Splashscreen(),
