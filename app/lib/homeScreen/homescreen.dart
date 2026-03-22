@@ -208,12 +208,6 @@ class _HomescreenState extends State<Homescreen> {
           ],
         ),
 
-        // bottomNavigationBar: BottomNavigationBar(items: [
-        //   BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home", ),
-        //    BottomNavigationBarItem(icon: Icon(Icons.person_rounded), label: "Profile"),
-        //   BottomNavigationBarItem(icon: Icon(Icons.settings), label: "setting"),
-        //  // BottomNavigationBarItem(icon: Icon(Icons.settings), label: "setting"),
-        // ]),
       ),
     );
   }

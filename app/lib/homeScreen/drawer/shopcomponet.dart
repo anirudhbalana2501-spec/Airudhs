@@ -108,13 +108,7 @@ class _ShopComponentState extends State<ShopComponent> {
                           );
                         }
                       });
-                      // await saveFavorites(); // ✅ Save karo
-                      // Navigator.push(
-                      //   context,
-                      //   MaterialPageRoute(
-                      //     builder: (context) => FavoriteScreen(),
-                      //  ),
-                      //);
+                      
                     },
 
                     child: Container(
@@ -195,53 +189,7 @@ class _ShopComponentState extends State<ShopComponent> {
               ),
             ),
 
-            // Container(
-            //   margin: EdgeInsets.only(left: 10),
-            //   width: 100,
-            //   height: 130,
-            //   clipBehavior: Clip.antiAlias,
-            //   decoration: BoxDecoration(
-            //     borderRadius: BorderRadius.circular(20),
-            //   ),
-            //   child: Image.asset("${widget.image}", fit: BoxFit.cover),
-            // ),
-
-            // Container(
-            //   margin: EdgeInsets.only(left: 20),
-            //   child: Column(
-            //     crossAxisAlignment: CrossAxisAlignment.start,
-            //     mainAxisAlignment: MainAxisAlignment.center,
-            //     children: [
-            //       Container(
-            //         margin: EdgeInsets.only(top: 0),
-            //         height: 30,
-            //         child: Text(
-            //           "${widget.pname}",
-            //           style: TextStyle(fontSize: 16),
-            //         ),
-            //       ),
-            //       Container(
-            //         height: 30,
-            //         width: 120,
-            //         child: Text(
-            //           "${widget.location}",
-            //           style: TextStyle(fontSize: 12),
-            //         ),
-            //       ),
-            //       Container(
-            //         decoration: BoxDecoration(
-            //           borderRadius: BorderRadius.circular(10),
-            //           border: Border.all(width: 1),
-            //         ),
-            //         margin: EdgeInsets.only(top: 10),
-            //         padding: EdgeInsets.all(5),
-            //         child: Row(
-            //           children: [Icon(Icons.star, size: 20), Text("3.7")],
-            //         ),
-            //       ),
-            //     ],
-            //   ),
-            // ),
+            
           ],
         ),
       ),
@@ -249,4 +197,4 @@ class _ShopComponentState extends State<ShopComponent> {
   }
 }
 
-/*  */
+
